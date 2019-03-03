@@ -16,12 +16,12 @@ function addevent(){
   });
   var eventid = newPostRef.key;
 
-  ref.child(groupname).child(username).child(events).set(eventid);
-  ref.child(groupname).child(username).child(events).child(eventid).set(eventname);
-  ref.child(groupname).child(username).child(events).child(eventid).set(eventdate);
-  ref.child(groupname).child(username).child(events).child(eventid).set(eventstart);
-  ref.child(groupname).child(username).child(events).child(eventid).set(eventloc);
-  ref.child(groupname).child(username).child(events).child(eventid).set(eventstart);
+  //ref.child(groupname).child(username).child(events).set(eventid);
+  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventname);
+  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventdate);
+  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventstart);
+  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventloc);
+  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventstart);
 
   // ref.once("value")
   // .then(function(snapshot) {
