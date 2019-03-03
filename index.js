@@ -4,12 +4,14 @@ function login() {
 
   var ref = firebase.database().ref();
 
+
+
   ref.once("value")
   .then(function(snapshot) {
 
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var groupname = document.getElementById("groupname").value;
+    var username = document.getElementById("loginusername").value;
+    var password = document.getElementById("loginpassword").value;
+    var groupname = document.getElementById("logingroupname").value;
 
     var path =  groupname + "/" + username;
     var c = snapshot.child(path).exists();
