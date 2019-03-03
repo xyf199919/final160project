@@ -1,0 +1,39 @@
+
+
+function login() {
+
+  var ref = firebase.database().ref();
+
+  ref.once("value")
+  .then(function(snapshot) {
+
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var groupname = document.getElementById("groupname").value;
+
+    var path =  groupname + "/" + username;
+    var c = snapshot.child(path).exists();
+    if (c) {
+      var user = snapshot.child(path).val();
+        if (user.password === password) {
+          document.location.href = "dashboard.html";
+        }
+
+    }
+  });
+
+  //
+  // ref.once("value")
+  // .then(function(snapshot) {
+  //   var path = groupname + "/" + username;
+  //   var c = snapshot.child(path).exists();
+  //   if (c) {
+  //     var user = snapshot.child(path).val();
+  //     if (user.password === password) {
+  //       document.location.href = "dashboard.html";
+  //     }
+  //
+  //   }
+  // });
+
+}
