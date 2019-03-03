@@ -22,6 +22,8 @@ function joingroup(){
 	regusername = document.getElementById("regusername").value;
 	regpassword = document.getElementById("regpassword").value;
 
+	localStorage.setItem("username",regusername);
+
 	var joingroupname = document.getElementById("joingroupname").value;
 	var ref = firebase.database().ref();
 
@@ -31,6 +33,7 @@ function joingroup(){
     var c = snapshot.child(joingroupname).exists();
     if (c) {
 				groupname = joingroupname;
+				localStorage.setItem("groupname",groupname);
 				ref.child(groupname).child(regname).child("name").set(regname);
 				ref.child(groupname).child(regname).child("password").set(regpassword);
 
@@ -49,10 +52,10 @@ function login() {
 
     regusername = document.getElementById("loginusername").value;
     regpassword = document.getElementById("loginpassword").value;
-    reggroupname = document.getElementById("logingroupname").value;
+    groupname = document.getElementById("logingroupname").value;
 
 
-    var path =  reggroupname + "/" + regusername;
+    var path = groupname + "/" + regusername;
     var c = snapshot.child(path).exists();
     if (c) {
       var user = snapshot.child(path).val();
@@ -62,4 +65,33 @@ function login() {
     }
   });
 
+}
+
+function addevent(){
+
+  window.alert("addingevent");
+
+	var groupname = localStorage.getItem("groupname");
+	var username = localStorage.getItem("username");
+	window.alert(groupname);
+
+  var ref = firebase.database().ref();
+  var postsRef = ref.child(groupname).child(username).child("events");
+  var eventname = document.getElementById("eventname").value;
+  var eventloc = document.getElementById("eventlocation").value;
+  var eventdate = document.getElementById("eventdate").value;
+  var eventstart = document.getElementById("eventstart").value;
+  var eventend = document.getElementById("eventend").value;
+  var newPostRef = postsRef.push({
+    classname: eventname,
+    date: eventdate,
+    starttime: eventstart,
+    endtime: eventend,
+    location: eventloc
+  });
+  var eventid = newPostRef.key;
+  window.alert(eventid);
+
+  var modal = document.getElementById('myModal');
+  modal.style.display = "none";
 }
