@@ -38,3 +38,27 @@ function joingroup(){
 		}
   });
 }
+
+function login() {
+  var ref = firebase.database().ref();
+
+  ref.once("value")
+  .then(function(snapshot) {
+
+    regusername = document.getElementById("loginusername").value;
+    regpassword = document.getElementById("loginpassword").value;
+    reggroupname = document.getElementById("logingroupname").value;
+
+
+    var path =  reggroupname + "/" + regusername;
+    var c = snapshot.child(path).exists();
+    if (c) {
+      var user = snapshot.child(path).val();
+        if (user.password === regpassword) {
+          document.location.href = "dashboard.html";
+        }
+
+    }
+  });
+
+}
