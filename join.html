@@ -15,17 +15,16 @@
     };
     firebase.initializeApp(config);
   </script>
+	<script src="register.js"></script>
 
 </head>
 
 <body>
-	<div id="login_div" class="main-div">
-		<h3>enter group code</h3>
-		<input type="code" placeholder="Group Code..." id="joingroupcode" />
-	</div>
-	<button id = "joingroup" onclick = "joingroup()">JoinGroup</button>
+	<div id="title">Join Group</div>
+	<textarea id = "joingroupname" placeholder = "Group ID"></textarea>
+	<button id = "joingroup" onclick = "joingroup()">Join Group</button>
 	<a href="home.html"><button>Back to Home</button></a>
-	<script src="register.js"></script>
+
 
 </body>
 

@@ -6,6 +6,8 @@ function login() {
 
   var ref = firebase.database().ref();
 
+  window.alert(ref);
+
   ref.once("value")
   .then(function(snapshot) {
 
