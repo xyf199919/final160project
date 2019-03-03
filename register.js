@@ -37,5 +37,4 @@ function joingroup(){
 				window.alert("groupname doesn't exist, please try again");
 		}
   });
-
 }
