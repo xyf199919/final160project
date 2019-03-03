@@ -2,12 +2,29 @@
 <head>
 	<title>Meetup join page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCnaA_H0N3W8UGpOJvoXcySnxbf5RPYNuo",
+      authDomain: "circlemeet.firebaseapp.com",
+      databaseURL: "https://circlemeet.firebaseio.com",
+      projectId: "circlemeet",
+      storageBucket: "circlemeet.appspot.com",
+      messagingSenderId: "352199270531"
+    };
+    firebase.initializeApp(config);
+  </script>
+
 </head>
 
 <body>
-
+	<div id="login_div" class="main-div">
+		<h3>enter code</h3>
+		<input type="code" placeholder="Code..." id="code_field" />
+	</div>
+	<a href="dashboard.html"><button>Login</button></a>
 
 </body>
 
 </html>
-
