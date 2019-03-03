@@ -35,10 +35,14 @@
 
 		<div class = "h2" id="title">JOIN OR CREATE GROUP</div>
 
-	  <button id = "create" onclick = "creategroup()">Create Group</button>
+		<div class = "groupoffield">
+			<textarea class = "joinfield" id = "joingroupname" placeholder = "Group ID"></textarea>
+			<button class = "createjoin" id = "create" onclick = "creategroup()">Create Group</button>
 
-		<textarea id = "joingroupname" placeholder = "Group ID"></textarea>
-		<button id = "joingroup" onclick = "joingroup()">Join Group</button>
+				<button class = "createjoin"id = "joingroup" onclick = "joingroup()">Join Group</button>
+
+		</div>
+
 		<div>
 			<a href="home.html"><button class = "button">Back</button></a>
 		</div>
