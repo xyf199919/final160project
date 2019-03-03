@@ -1,5 +1,7 @@
 
 
+
+
 function login() {
 
   var ref = firebase.database().ref();
@@ -23,6 +25,6 @@ function login() {
   });
 }
 
-function back() {
+function loginback() {
   document.location.href = "home.html";
 }
