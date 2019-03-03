@@ -1,11 +1,12 @@
 function creategroup() {
 
-	window.alert("ok");
+
 	regname = document.getElementById("regname").value;
 	regusername = document.getElementById("regusername").value;
 	regpassword = document.getElementById("regpassword").value;
 
 	groupname = Math.floor((Math.random() * 99999) + 1);
+	window.alert(groupname);
 
 	var ref = firebase.database().ref();
 
@@ -58,7 +59,6 @@ function login() {
         if (user.password === regpassword) {
           document.location.href = "dashboard.html";
         }
-
     }
   });
 
