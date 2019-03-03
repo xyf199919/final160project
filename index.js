@@ -24,7 +24,3 @@ function login() {
     }
   });
 }
-
-function loginback() {
-  document.location.href = "home.html";
-}
