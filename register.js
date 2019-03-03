@@ -1,5 +1,6 @@
 function creategroup() {
 
+	window.alert("ok");
 	regname = document.getElementById("regname").value;
 	regusername = document.getElementById("regusername").value;
 	regpassword = document.getElementById("regpassword").value;

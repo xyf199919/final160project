@@ -1,10 +1,17 @@
 function addevent(){
 
+  window.alert("ol");
+
+  // var modal = document.getElementById('myModal');
+  // modal.style.display = "none";
+
   var ref = firebase.database().ref();
-  var postsRef = ref.child("12345").child("xyf199919").child(events);
+  var postsRef = ref.child("12345").child("xyf199919").child("events");
   var eventname = document.getElementById("eventname").value;
-  var eventloc = document.getElementById("eventloc").value;
+  var eventloc = document.getElementById("eventlocation").value;
+  window.alert(eventloc);
   var eventdate = document.getElementById("eventdate").value;
+  window.alert(eventdate);
   var eventstart = document.getElementById("eventstart").value;
   var eventend = document.getElementById("eventend").value;
   var newPostRef = postsRef.push({
@@ -15,13 +22,13 @@ function addevent(){
     location: eventloc
   });
   var eventid = newPostRef.key;
+  window.alert(eventid);
 
-  //ref.child(groupname).child(username).child(events).set(eventid);
-  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventname);
-  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventdate);
-  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventstart);
-  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventloc);
-  ref.child("12345").child("xyf199919").child(events).child(eventid).set(eventstart);
+  // ref.child("12345").child("xyf199919").child("events").child(eventid).child("starttime").set(eventstart);
+  // ref.child("12345").child("xyf199919").child("events").child(eventid).child("endtime").set(eventend);
+  // ref.child("12345").child("xyf199919").child("events").child(eventid).child("date").set(eventdate);
+  // ref.child("12345").child("xyf199919").child("events").child(eventid).child("location").set(eventloc);
+  // ref.child("12345").child("xyf199919").child("events").child(eventid).child("classname").set(eventname);
 
   // ref.once("value")
   // .then(function(snapshot) {

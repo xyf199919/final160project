@@ -76,7 +76,22 @@
 	  color: white;
 	}
 	</style>
-	<script src="index.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCnaA_H0N3W8UGpOJvoXcySnxbf5RPYNuo",
+      authDomain: "circlemeet.firebaseapp.com",
+      databaseURL: "https://circlemeet.firebaseio.com",
+      projectId: "circlemeet",
+      storageBucket: "circlemeet.appspot.com",
+      messagingSenderId: "352199270531"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script type="text/javascript" src="js/firebase.js"></script>
+
+	<script src="register.js"></script>
 </head>
 
 <body>
@@ -154,9 +169,9 @@
 			}
 
 			//add event button, close modal
-			addbtn.onclick = function() {
-			  modal.style.display = "none";
-			}
+			// addbtn.onclick = function() {
+			//   modal.style.display = "none";
+			// }
 
 			// When the user clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
@@ -173,5 +188,5 @@
 	</div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="javascript/dashboard.js"></script>
+<script type="text/javascript" src="addeventbutton.js"></script>
 </html>
