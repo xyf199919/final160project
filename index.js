@@ -1,12 +1,5 @@
-
-
-
-
 function login() {
-
   var ref = firebase.database().ref();
-
-  window.alert(ref);
 
   ref.once("value")
   .then(function(snapshot) {
@@ -14,6 +7,7 @@ function login() {
     var username = document.getElementById("loginusername").value;
     var password = document.getElementById("loginpassword").value;
     var groupname = document.getElementById("logingroupname").value;
+
 
     var path =  groupname + "/" + username;
     var c = snapshot.child(path).exists();
@@ -25,4 +19,5 @@ function login() {
 
     }
   });
+
 }

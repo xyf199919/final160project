@@ -1,14 +1,10 @@
-
-
 function creategroup() {
-	window.alert("ok");
 
 	regname = document.getElementById("regname").value;
 	regusername = document.getElementById("regusername").value;
 	regpassword = document.getElementById("regpassword").value;
 
 	groupname = Math.floor((Math.random() * 99999) + 1);
-	window.alert(groupname)；
 
 	var ref = firebase.database().ref();
 
@@ -20,7 +16,6 @@ function creategroup() {
 }
 
 function joingroup(){
-
 	regname = document.getElementById("regname").value;
 	regusername = document.getElementById("regusername").value;
 	regpassword = document.getElementById("regpassword").value;
@@ -39,7 +34,7 @@ function joingroup(){
 
 				document.location.href = "dashboard.html";
     } else {
-				window.alert("groupname doesn't exit, please try again");
+				window.alert("groupname doesn't exist, please try again");
 		}
   });
 
