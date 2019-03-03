@@ -1,7 +1,34 @@
 <html>
 <head>
+	<title>Register for CircleMeet</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+	<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCnaA_H0N3W8UGpOJvoXcySnxbf5RPYNuo",
+	    authDomain: "circlemeet.firebaseapp.com",
+	    databaseURL: "https://circlemeet.firebaseio.com",
+	    projectId: "circlemeet",
+	    storageBucket: "circlemeet.appspot.com",
+	    messagingSenderId: "352199270531"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script type="text/javascript" src="js/firebase.js"></script>
 </head>
 
 <body>
+	<h3>Register</h3>
+	<form>
+          <input id="new-name" placeholder="Full name">
+          <input id="new-username" placeholder="Username">
+          <input id="new-password" placeholder="Password">
+          <button type="submit" id="create" class="form-submit">Create a group</button>
+          <button type="submit" id="join" class="form-submit">Join a group</button>
+					<a href="home.html"><button>Back to home</button></a>
+	</form>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 </html>
