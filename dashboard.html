@@ -1,14 +1,36 @@
 <html>
 <head>
 	<title>Meetup dashboard</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css"/>
 </head>
 
 <body>
-	<a href="home.html"><button>Back to home</button></a>
+	<div id="sidebar">
+		<div id="welcome-text">Welcome, [name]!</div>
+		<div id="tabs-wrapper">
+			<button class="0 me tab large-tab">My Schedule</button>
+			<button class="2 circle tab reg-tab">My Circle</button>
+			<button class="3 settings tab reg-tab">Settings</button>
+		</div>
+		<div id="buffer"></div>
+	</div>
 
-
+	<div id="topbar">
+		<div id="subtab-wrapper">
+			<button class="0 subtab">List Mode</button>		
+			<button class="1 subtab">Calendar Mode</button>		
+		</div>
+		<a href="home.html"><button id="logout">Logout</button></a>
+	</div>
+	
+	<div id="mainpage-carousel">
+		<div id="0" class="me page"> me1</div>
+		<div id="1" class="me page"> me2</div>
+		<div id="2" class="circle page"> circle1</div>
+		<div id="3" class="settings page"> setings</div>			
+	</div>
 </body>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="javascript/dashboard.js"></script>
 </html>
 
