@@ -2,6 +2,7 @@
 <head>
 	<title>Register for CircleMeet</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
 	<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
   <script>
@@ -22,16 +23,28 @@
 
 </head>
 
-<body>
-	<h3>Register</h3>
-	<textarea id = "regname" placeholder = "Name"></textarea>
-	<textarea id = "regusername" placeholder = "Username"></textarea>
-  <textarea id = "regpassword" placeholder = "Password"></textarea>
-  <button id = "create" onclick = "creategroup()">Create Group</button>
-	<div id="title">Join Group</div>
-	<textarea id = "joingroupname" placeholder = "Group ID"></textarea>
-	<button id = "joingroup" onclick = "joingroup()">Join Group</button>
-  <a href="home.html"><button>Back</button></a>
+<body bgcolor="#F4C2C2">
+	<div class = "container">
+		<div class = "h1" id="title">REGISTER</div>
+
+		<div class = "groupoffield">
+			<textarea class = "textfield" id = "regname" placeholder = "Name"></textarea>
+			<textarea class = "textfield" id = "regusername" placeholder = "Username"></textarea>
+		  <textarea class = "textfield" id = "regpassword" placeholder = "Password"></textarea>
+		</div>
+
+		<div class = "h2" id="title">JOIN OR CREATE GROUP</div>
+
+	  <button id = "create" onclick = "creategroup()">Create Group</button>
+
+		<textarea id = "joingroupname" placeholder = "Group ID"></textarea>
+		<button id = "joingroup" onclick = "joingroup()">Join Group</button>
+		<div>
+			<a href="home.html"><button class = "button">Back</button></a>
+		</div>
+
+	</div>
+
 </body>
 
 
