@@ -1,22 +1,38 @@
 
-function creategroup() {
-
-
-	regname = document.getElementById("regname").value;
+function register() {
 	regusername = document.getElementById("regusername").value;
 	regpassword = document.getElementById("regpassword").value;
 
-	groupname = Math.floor((Math.random() * 99999) + 1);
-	window.alert(groupname);
+	regrelativename = document.getElementById("regrelativename").value;
+	regbirthdate = document.getElementById("regbirthdate").value;
 
-	var ref = firebase.database().ref();
+	ref.child(regusername).child("password").set(regpassword);
+	ref.child(regusername).child("birthdate").set(regbirthdate);
+	ref.child(regusername).child("relativename").set(regrelativename);
 
-	ref.child(groupname).child(regname).child("name").set(regname);
-	ref.child(groupname).child(regname).child("password").set(regpassword);
-
-	document.location.href = "dashboard.html";
-
+	document.location.href = "editTimeline.html";
 }
+
+function login() {
+  var ref = firebase.database().ref();
+
+  ref.once("value")
+  .then(function(snapshot) {
+
+    regusername = document.getElementById("loginusername").value;
+    regpassword = document.getElementById("loginpassword").value;
+
+    var path = regusername;
+    var c = snapshot.child(path).exists();
+    if (c) {
+      var user = snapshot.child(path).val();
+        if (user.password === regpassword) {
+          document.location.href = "editTimeline";
+        }
+    }
+  });
+}
+
 
 function joingroup(){
 	regname = document.getElementById("regname").value;
@@ -45,28 +61,7 @@ function joingroup(){
   });
 }
 
-function login() {
-  var ref = firebase.database().ref();
 
-  ref.once("value")
-  .then(function(snapshot) {
-
-    regusername = document.getElementById("loginusername").value;
-    regpassword = document.getElementById("loginpassword").value;
-    groupname = document.getElementById("logingroupname").value;
-
-
-    var path = groupname + "/" + regusername;
-    var c = snapshot.child(path).exists();
-    if (c) {
-      var user = snapshot.child(path).val();
-        if (user.password === regpassword) {
-          document.location.href = "dashboard.html";
-        }
-    }
-  });
-
-}
 
 function addevent(){
 

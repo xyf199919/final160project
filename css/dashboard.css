@@ -1,7 +1,7 @@
 body{
 	margin: 0px;
 	display: grid;
-	grid-template-areas: 
+	grid-template-areas:
 		"side tabs"
 		"side pges";
 	grid-template-columns: 25% 75%;
@@ -15,7 +15,7 @@ body{
 #sidebar {
 	grid-area: side;
 	display: grid;
-	grid-template-areas: 
+	grid-template-areas:
 		"text"
 		"tabz"
 		"buff";

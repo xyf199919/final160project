@@ -4,50 +4,61 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
-	<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCnaA_H0N3W8UGpOJvoXcySnxbf5RPYNuo",
-      authDomain: "circlemeet.firebaseapp.com",
-      databaseURL: "https://circlemeet.firebaseio.com",
-      projectId: "circlemeet",
-      storageBucket: "circlemeet.appspot.com",
-      messagingSenderId: "352199270531"
-    };
-    firebase.initializeApp(config);
-  </script>
-  <script type="text/javascript" src="js/firebase.js"></script>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
 
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyAa-sz4c68jvcf3rsHtrXoOAXBwMCoEdwQ",
+	    authDomain: "cheers-to-life-5e974.firebaseapp.com",
+	    databaseURL: "https://cheers-to-life-5e974.firebaseio.com",
+	    projectId: "cheers-to-life-5e974",
+	    storageBucket: "cheers-to-life-5e974.appspot.com",
+	    messagingSenderId: "442396015596",
+	    appId: "1:442396015596:web:64a119b3401745a0"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+		var ref = firebase.database().ref();
+	</script>
 	<script src="register.js"></script>
+
 
 </head>
 
-<body bgcolor="#F4C2C2">
+<body bgcolor="#3CBCB4">
 	<div class = "container">
 		<div class = "h1" id="title">REGISTER</div>
 
 		<div class = "groupoffield">
-			<textarea class = "textfield" id = "regname" placeholder = "Name"></textarea>
 			<textarea class = "textfield" id = "regusername" placeholder = "Username"></textarea>
 		  <textarea class = "textfield" id = "regpassword" placeholder = "Password"></textarea>
 		</div>
 
-		<div class = "h2" id="title">JOIN OR CREATE GROUP</div>
+		<div class = "h2" id="title">RELATIVE INFO</div>
 
 		<div class = "groupoffield">
-			<textarea class = "joinfield" id = "joingroupname" placeholder = "Group ID"></textarea>
-			<button class = "createjoin" id = "create" onclick = "creategroup()">Create Group</button>
-
-				<button class = "createjoin"id = "joingroup" onclick = "joingroup()">Join Group</button>
-
+			<textarea class = "textfield" id = "regrelativename" placeholder = "Relative Name"></textarea>
+		  <textarea class = "textfield" id = "regbirthdate" placeholder = "Date of Birth"></textarea>
 		</div>
 
 		<div>
+			<button class = "button" id = "login" onclick = "register()">Login</button>
 			<a href="home.html"><button class = "button">Back</button></a>
 		</div>
 
 	</div>
+
+
+
+
+
+
+
 
 </body>
 

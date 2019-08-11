@@ -3,35 +3,16 @@
   <title>Meetup homepage</title>
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-
-  <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCnaA_H0N3W8UGpOJvoXcySnxbf5RPYNuo",
-      authDomain: "circlemeet.firebaseapp.com",
-      databaseURL: "https://circlemeet.firebaseio.com",
-      projectId: "circlemeet",
-      storageBucket: "circlemeet.appspot.com",
-      messagingSenderId: "352199270531"
-    };
-    firebase.initializeApp(config);
-  </script>
-  <script type="text/javascript" src="js/firebase.js"></script>
-
-  <script src="register.js"></script>
-  <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script> -->
-
   </head>
 
-<body bgcolor="#F4C2C2">
+<body bgcolor="#3CBCB4">
   <div class = "container">
     <div class = "h1" id="title">LOGIN</div>
 
     <div class = "groupoffield">
       <textarea class = "textfield"id = "loginusername" placeholder = "Username"></textarea>
       <textarea class = "textfield"id = "loginpassword" placeholder = "Password"></textarea>
-      <textarea class = "textfield"id = "logingroupname" placeholder = "Groupname"></textarea>
+
     </div>
 
     <div>
@@ -43,6 +24,31 @@
 
 
 
+
+
+
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAa-sz4c68jvcf3rsHtrXoOAXBwMCoEdwQ",
+      authDomain: "cheers-to-life-5e974.firebaseapp.com",
+      databaseURL: "https://cheers-to-life-5e974.firebaseio.com",
+      projectId: "cheers-to-life-5e974",
+      storageBucket: "cheers-to-life-5e974.appspot.com",
+      messagingSenderId: "442396015596",
+      appId: "1:442396015596:web:065ae12380c8af35"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
 
 </html>
