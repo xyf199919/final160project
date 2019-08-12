@@ -14,7 +14,6 @@ function register() {
 }
 
 function login() {
-  var ref = firebase.database().ref();
 
   ref.once("value")
   .then(function(snapshot) {
@@ -27,7 +26,7 @@ function login() {
     if (c) {
       var user = snapshot.child(path).val();
         if (user.password === regpassword) {
-          document.location.href = "editTimeline";
+          document.location.href = "editTimeline.html";
         }
     }
   });

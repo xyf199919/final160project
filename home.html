@@ -3,7 +3,6 @@
 	<title>Meetup homepage</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-	<script src="register.js"></script>
 </head>
 
 <body bgcolor="#3CBCB4">
@@ -16,29 +15,23 @@
 	</div>
 
 
-
-
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
-
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-			 https://firebase.google.com/docs/web/setup#config-web-app -->
-
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 	<script>
-		// Your web app's Firebase configuration
-		var firebaseConfig = {
-			apiKey: "AIzaSyAa-sz4c68jvcf3rsHtrXoOAXBwMCoEdwQ",
-			authDomain: "cheers-to-life-5e974.firebaseapp.com",
-			databaseURL: "https://cheers-to-life-5e974.firebaseio.com",
-			projectId: "cheers-to-life-5e974",
-			storageBucket: "cheers-to-life-5e974.appspot.com",
-			messagingSenderId: "442396015596",
-			appId: "1:442396015596:web:065ae12380c8af35"
-		};
 		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		var rootRef = firebase.database().ref();
+		var config = {
+			apiKey: "AIzaSyA2QfwV6qOsO91qe6oPx8jA1h_nrINl2E0",
+			authDomain: "preludepractice-1149f.firebaseapp.com",
+			databaseURL: "https://preludepractice-1149f.firebaseio.com",
+			projectId: "preludepractice-1149f",
+			storageBucket: "preludepractice-1149f.appspot.com",
+			messagingSenderId: "400935945127"
+		};
+		firebase.initializeApp(config);
+		var ref = firebase.database().ref();
+
 	</script>
+	<script src="register.js"></script>
 </body>
 
 </html>
