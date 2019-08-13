@@ -43,7 +43,7 @@
     color: black;
   }
 
-	#test-image{
+	.test-image{
 		left: -35px;
 		position: absolute;
 		bottom: 50px;
@@ -125,8 +125,8 @@
       }
 
 	#event-container{
-		height: 200px;
-		width: 200px;
+		height: 20px;
+		width: 20px;
 	}
 
   #leftButton {
@@ -217,14 +217,16 @@
 				// '<div id="event-container">'
 				// '</div>'
 				var top = true;
-				const imgdivtop = '<div id="test-image" style="bottom: 50px;"></div>';
-				const imgdivbottom = '<div id="test-image" style="bottom: -120px;"></div>';
+				const imgdivtop = '<div class="test-image" style="bottom: 50px;"></div>';
+				const imgdivbottom = '<div class="test-image" style="bottom: -120px;"></div>';
 
 				const istop = function () {
 					if(top == true){
 						return imgdivtop;
+						top = false;
 					}else{
 						return imgdivbottom;
+						top = true;
 					}
 				}
         //Draw first date circle
@@ -243,9 +245,15 @@
           //Integer relative to the first and last dates
           var relativeInt = thisInt / lastInt;
 
+					// use preview to put image at top or bottom, add to append
+					var preview = istop();
+
           //Draw the date circle
 					//make it draw a large box div
-          $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
+					outer = '<div id="event-container" style="left: '+ relativeInt * 100 +'%;">' + preview;
+          $("#line").append(outer + '<div class="circle" id="circle' + i + '"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div></div>');
+
+					// $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
 
           $("#mainCont").append('<span id="span' + i + '" class="right">' + dateSpan(dates[i]) + '</span>');
         }
