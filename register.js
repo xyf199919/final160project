@@ -26,67 +26,105 @@ function login() {
     if (c) {
       var user = snapshot.child(path).val();
         if (user.password === regpassword) {
+					localStorage.setItem("username",regusername);
           document.location.href = "editTimeline.html";
         }
     }
   });
 }
+//updated event with id format
+function displayevents_id() {
+	var username = 'asdf';
+	var dates = [];
+	var titles =[];
+	var descriptions = [];
+	var ids = [];
+	var numevents = 0;
+	var userref = firebase.database().ref(username);
 
+	userref.once("value")
+	.then(function(snapshot) {
 
-function joingroup(){
-	regname = document.getElementById("regname").value;
-	regusername = document.getElementById("regusername").value;
-	regpassword = document.getElementById("regpassword").value;
+		var c = snapshot.child("events").exists();
+		if (c) {
+				var eventsRef = snapshot.child("events");
 
-	localStorage.setItem("username",regusername);
+				eventsRef.forEach(function(childSnapshot) {
+					let id = childSnapshot.key;
+					// var childData = childSnapshot.val();
+					let title = childSnapshot.child("title").val();
+					let description = childSnapshot.child("body").val();
+					let date = childSnapshot.child("date").val();
 
-	var joingroupname = document.getElementById("joingroupname").value;
-	var ref = firebase.database().ref();
+					dates.push(date);
+					titles.push(title);
+					descriptions.push(description);
+					ids.push(id);
+					numevents += 1;
+				});
+		} else {
+				window.alert("username event doesn't exist, please try again");
+		}
+	});
+	//sorting dates
+	setTimeout(function(){
+		var indices = new Array(numevents);
+		for (var i = 0; i < numevents; ++i) indices[i] = i;
+		indices.sort(function (a, b) { return dates[a] < dates[b] ? -1 : dates[a] > dates[b] ? 1 : 0; });
+		console.log(indices);
 
-  ref.once("value")
+		var dates_sorted = [];
+		var titles_sorted = [];
+		var descriptions_sorted = [];
+		var ids_sorted = []
+
+		setTimeout(function() {
+			for (i = 0; i < numevents; i++) {
+				dates_sorted[i] = dates[indices[i]];
+				titles_sorted[i] = titles[indices[i]];
+				descriptions_sorted[i] = descriptions[indices[i]];
+				ids_sorted[i] = ids[indices[i]];
+			}
+			console.log(dates_sorted);
+			console.log(titles_sorted);
+			console.log(descriptions_sorted);
+			console.log(ids_sorted);
+		}, 500)
+	}, 500)
+}
+
+//assumes date is a number
+function editevent(id, date, title, body) {
+	var username = 'asdf';
+	var userref = firebase.database().ref(username);
+
+	userref.once("value")
   .then(function(snapshot) {
 
-    var c = snapshot.child(joingroupname).exists();
+    var c = snapshot.child('events/' + id).exists();
     if (c) {
-				groupname = joingroupname;
-				localStorage.setItem("groupname",groupname);
-				ref.child(groupname).child(regname).child("name").set(regname);
-				ref.child(groupname).child(regname).child("password").set(regpassword);
-
-				document.location.href = "dashboard.html";
+				var eventRef = snapshot.child('events/' + id);
+				eventRef.child('title').set(title);
+				eventRef.child('body').set(body);
+				eventRef.child('date').set(date);
     } else {
-				window.alert("groupname doesn't exist, please try again");
+				window.alert("so such id");
 		}
   });
 }
 
-
-
-function addevent(){
-
-  window.alert("addingevent");
-
-	var groupname = localStorage.getItem("groupname");
-	var username = localStorage.getItem("username");
-	window.alert(groupname);
+function addevent(date, title, body){
+	//TODO
+	var username = 'asdf';
 
   var ref = firebase.database().ref();
-  var postsRef = ref.child(groupname).child(username).child("events");
-  var eventname = document.getElementById("eventname").value;
-  var eventloc = document.getElementById("eventlocation").value;
-  var eventdate = document.getElementById("eventdate").value;
-  var eventstart = document.getElementById("eventstart").value;
-  var eventend = document.getElementById("eventend").value;
-  var newPostRef = postsRef.push({
-    classname: eventname,
-    date: eventdate,
-    starttime: eventstart,
-    endtime: eventend,
-    location: eventloc
-  });
-  var eventid = newPostRef.key;
-  window.alert(eventid);
+  var eventsRef = ref.child(username).child("events");
 
-  var modal = document.getElementById('myModal');
-  modal.style.display = "none";
+  var newEventsRef = eventsRef.push({
+    date: date,
+		title: title,
+		body: body
+  });
+  var eventid = newEventsRef.key;
+  window.alert(eventid);
 }
