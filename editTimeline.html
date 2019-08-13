@@ -43,9 +43,17 @@
     color: black;
   }
 
+	#test-image{
+		left: -35px;
+		position: absolute;
+		bottom: 50px;
+		height: 75px;
+		width: 100px;
+		background-image: url('https://media3.giphy.com/media/NjevnbNiUmeLm/giphy.gif');
+	}
+
 	.sqr_preview {
 		background-color: orange
-		height:
 	}
 
   .circle {
@@ -115,23 +123,33 @@
   .left {
         left: -100%;
       }
+
+	#event-container{
+		height: 200px;
+		width: 200px;
+	}
+
   #leftButton {
     float: left;
+		position: relative
+		top: 150px;
   }
   #rightButton {
     float: right;
+		position: relative
+		top: 150px;
   }
 
 
   </style>
   <head> </head>
   <body>
-    <div id="display">
-      <div type="button" id="leftButton">left</div>
-      <div id="mainCont">
-      </div>
-      <div type="button" id="rightButton">right</div>
-    </div>
+		<div id="display">
+			<div type="button" id="leftButton">left</div>
+			<div id="mainCont">
+			</div>
+			<div type="button" id="rightButton">right</div>
+		</div>
     <div id="lineCont">
       <div id="line"></div>
       <div id="span">Dates Placeholder</div>
@@ -195,8 +213,22 @@
         //Integer representation of the last day. The first day is represnted as 0
         var lastInt = ((lastYear - firstYear) * 256) + ((lastMonth - firstMonth) * 30) + (lastDay - firstDay);
 
+				// put bottom: -120px
+				// '<div id="event-container">'
+				// '</div>'
+				var top = true;
+				const imgdivtop = '<div id="test-image" style="bottom: 50px;"></div>';
+				const imgdivbottom = '<div id="test-image" style="bottom: -120px;"></div>';
+
+				const istop = function () {
+					if(top == true){
+						return imgdivtop;
+					}else{
+						return imgdivbottom;
+					}
+				}
         //Draw first date circle
-        $("#line").append('<div class="circle" id="circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
+        $("#line").append('<div id="event-container">' + imgdivtop + '<div class="circle" id="circle0" style="left: ' + 0 + '%;">' + '<div class="popupSpan">' + dateSpan(dates[0]) + '</div></div></div>');
 
         $("#mainCont").append('<span id="span0" class="center">' + dateSpan(dates[0]) + '</span>');
 
@@ -212,6 +244,7 @@
           var relativeInt = thisInt / lastInt;
 
           //Draw the date circle
+					//make it draw a large box div
           $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
 
           $("#mainCont").append('<span id="span' + i + '" class="right">' + dateSpan(dates[i]) + '</span>');
