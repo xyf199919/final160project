@@ -1,0 +1,94 @@
+body {
+  margin: 0 ;
+  padding: 0;
+  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%203.09.24%20PM.png);
+
+}
+
+.mainbox {
+  width: 100%;
+  height: calc(100% - 100px);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftbox {
+  height: 80%;
+  width: 70%;
+
+  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%206.53.30%20PM.png);
+  float: left;
+  margin-right: 40px;
+}
+
+.sidebox {
+  float: left;
+  width: 15%;
+  height: 80%;
+  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%206.53.30%20PM.png);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebox > input {
+  width: 50%;
+  padding: 20% 0 20% 0;
+}
+
+.save {
+
+}
+
+.cancel {
+
+  
+}
+
+
+.navbar {
+  width: 100%;
+  height: 100px;
+  background-color: red;
+  background-repeat: round;
+  border-bottom: 1px solid #000000;
+  background-color: green;
+  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%203.09.24%20PM.png);
+}
+
+.navbar_logo {
+  height: 100%;
+  width: 30%;
+  float: left;
+
+}
+
+.navbar_logo > input {
+  height: 100%;
+  width: 125px;
+}
+
+.navbar_buttons {
+  height: 100%;
+  width: 70%;
+  float: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.navbar_buttons > input {
+  height: 60%;
+  float: left;
+  padding: 0 10px 0 10px;
+  margin-top: 20px
+}
+
+.btn-group {
+  right: 150px;
+
+}
