@@ -33,7 +33,7 @@ function login() {
   });
 }
 //updated event with id format
-function displayevents_id() {
+function getevents(username) {
 	var username = 'asdf';
 	var dates = [];
 	var titles =[];
@@ -85,10 +85,14 @@ function displayevents_id() {
 				descriptions_sorted[i] = descriptions[indices[i]];
 				ids_sorted[i] = ids[indices[i]];
 			}
-			console.log(dates_sorted);
-			console.log(titles_sorted);
-			console.log(descriptions_sorted);
-			console.log(ids_sorted);
+			// console.log(dates_sorted);
+			// console.log(titles_sorted);
+			// console.log(descriptions_sorted);
+			// console.log(ids_sorted);
+			let listofevents = [dates_sorted, titles_sorted, descriptions_sorted, ids_sorted];
+			console.log(listofevents);
+
+			return listofevents;
 		}, 500)
 	}, 500)
 }

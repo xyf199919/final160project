@@ -18,6 +18,7 @@ final160project/editTimeline.html
 
 <!DOCTYPE html>
 <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+
 <!-- "https://code.tutsplus.com/tutorials/how-to-create-presentation-slides-with-html-and-css--net-19870" -->
 <html>
   <style>
@@ -267,6 +268,24 @@ final160project/editTimeline.html
   </div>
 </section>
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2QfwV6qOsO91qe6oPx8jA1h_nrINl2E0",
+      authDomain: "preludepractice-1149f.firebaseapp.com",
+      databaseURL: "https://preludepractice-1149f.firebaseio.com",
+      projectId: "preludepractice-1149f",
+      storageBucket: "preludepractice-1149f.appspot.com",
+      messagingSenderId: "400935945127"
+    };
+    firebase.initializeApp(config);
+    var ref = firebase.database().ref();
+
+  </script>
+  <script src="register.js"></script>
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script  type="text/javascript">
   (function() {
@@ -281,14 +300,25 @@ final160project/editTimeline.html
     xScrolling = 280,
     disabledClass = "disabled";
   // START
-  window.addEventListener("load", init);
-  function init() {
-    setEqualHeights(elH);
-    animateTl(xScrolling, arrows, timeline);
-    setSwipeFn(timeline, arrowPrev, arrowNext);
-    setKeyboardFn(arrowPrev, arrowNext);
+  // window.addEventListener("load", init);
+
+
+
+  // function init() {
+  var listofevents = getevents('asdf', addEvents);
+  setEqualHeights(elH);
+  animateTl(xScrolling, arrows, timeline);
+  setSwipeFn(timeline, arrowPrev, arrowNext);
+  setKeyboardFn(arrowPrev, arrowNext);
+  // setTimeout(addEvents(listofevents), 5000);
+
+  // function runInOrder(){
+  //   getevents.then((list) => addEvents(list))
+  // }
+  // runInOrder();
+
     //addEvents();
-  }
+  // }
   // SET EQUAL HEIGHTS
   function setEqualHeights(el) {
     let counter = 0;
@@ -376,14 +406,22 @@ final160project/editTimeline.html
       }
     });
   }
-  var dates = ["Jan 5 1941", "March 10 1941", "April 3 1948", "June 10 1957"];
-  var titles = ["Cat in a hat", "Turtle in a shell", "Dear in basket", "Jack gets dinner"];
-  var descriptions = ["aaaaaaaaaaaaaa aaaaaa aaaa aaaaaaa aaaaaaaa", "bbbbbb bbbb bbb bbbb bbbbb bbbbb bbbbb bbb", "cccc ccc ccccc ccccc ccccc cccccc ccccc", "dddddd dddd ddd ddd dddd dddd dddd dddd dddd"];
-  var ids = [1, 2, 3, 4];
+
+
+  // var dates = ["Jan 5 1941", "March 10 1941", "April 3 1948", "June 10 1957"];
+  // var titles = ["Cat in a hat", "Turtle in a shell", "Dear in basket", "Jack gets dinner"];
+  // var descriptions = ["aaaaaaaaaaaaaa aaaaaa aaaa aaaaaaa aaaaaaaa", "bbbbbb bbbb bbb bbbb bbbbb bbbbb bbbbb bbb", "cccc ccc ccccc ccccc ccccc cccccc ccccc", "dddddd dddd ddd ddd dddd dddd dddd dddd dddd"];
+  // var ids = [1, 2, 3, 4];
   // Append events
-  function addEvents(){
+  function addEvents(listofevents){
     // console.log("add events");
     // do the middle events ones
+
+    var dates = listofevents[0];
+    var titles = listofevents[1];
+    var descriptions = listofevents[2];
+    var ids = listofevents[3];
+
     for (i = 0; i < dates.length - 1; i++){
       var htmlToAdd =
         "<li><div class='ev-square' id='" + ids[i] + "'><time>"
@@ -406,7 +444,7 @@ final160project/editTimeline.html
       "</div></li><li></li>";
     $(".timeline ol").append(lastEvent);
   }
-  addEvents();
+
   // click detections
   $(".add-ev-button").click(function() {
     console.log("add event button clicked");
@@ -416,6 +454,71 @@ final160project/editTimeline.html
     var curr_id = this.id || "No ID!";
     console.log(curr_id);
   })
+
+  function getevents(username, addEvents) {
+  	var username = 'asdf';
+  	var dates = [];
+  	var titles =[];
+  	var descriptions = [];
+  	var ids = [];
+  	var numevents = 0;
+  	var userref = firebase.database().ref(username);
+
+  	userref.once("value")
+  	.then(function(snapshot) {
+
+  		var c = snapshot.child("events").exists();
+  		if (c) {
+  				var eventsRef = snapshot.child("events");
+
+  				eventsRef.forEach(function(childSnapshot) {
+  					let id = childSnapshot.key;
+  					// var childData = childSnapshot.val();
+  					let title = childSnapshot.child("title").val();
+  					let description = childSnapshot.child("body").val();
+  					let date = childSnapshot.child("date").val();
+
+  					dates.push(date);
+  					titles.push(title);
+  					descriptions.push(description);
+  					ids.push(id);
+  					numevents += 1;
+  				});
+  		} else {
+  				window.alert("username event doesn't exist, please try again");
+  		}
+  	});
+  	//sorting dates
+  	setTimeout(function(){
+  		var indices = new Array(numevents);
+  		for (var i = 0; i < numevents; ++i) indices[i] = i;
+  		indices.sort(function (a, b) { return dates[a] < dates[b] ? -1 : dates[a] > dates[b] ? 1 : 0; });
+  		console.log(indices);
+
+  		var dates_sorted = [];
+  		var titles_sorted = [];
+  		var descriptions_sorted = [];
+  		var ids_sorted = []
+
+  		setTimeout(function() {
+  			for (i = 0; i < numevents; i++) {
+  				dates_sorted[i] = dates[indices[i]];
+  				titles_sorted[i] = titles[indices[i]];
+  				descriptions_sorted[i] = descriptions[indices[i]];
+  				ids_sorted[i] = ids[indices[i]];
+  			}
+  			// console.log(dates_sorted);
+  			// console.log(titles_sorted);
+  			// console.log(descriptions_sorted);
+  			// console.log(ids_sorted);
+  			let listofevents = [dates_sorted, titles_sorted, descriptions_sorted, ids_sorted];
+  			console.log(listofevents);
+        addEvents(listofevents);
+
+  			return listofevents;
+  		}, 500)
+  	}, 500)
+  }
 })();
   </script>
 
