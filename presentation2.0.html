@@ -275,22 +275,128 @@
       <div id="span">Dates Placeholder</div>
     </div>
 
+
+
+
   </body>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2QfwV6qOsO91qe6oPx8jA1h_nrINl2E0",
+      authDomain: "preludepractice-1149f.firebaseapp.com",
+      databaseURL: "https://preludepractice-1149f.firebaseio.com",
+      projectId: "preludepractice-1149f",
+      storageBucket: "preludepractice-1149f.appspot.com",
+      messagingSenderId: "400935945127"
+    };
+    firebase.initializeApp(config);
+    var ref = firebase.database().ref();
+
+  </script>
+  <script src="register.js"></script>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script type="text/javascript">
+    ///////////////////////////////////////////////////////////////////
+
+  var datesP;
+  function getevents(username, addEvents) {
+    var username = 'asdf';
+    var dates = [];
+    var titles =[];
+    var descriptions = [];
+    var ids = [];
+    var numevents = 0;
+    var userref = firebase.database().ref(username);
+
+    userref.once("value")
+    .then(function(snapshot) {
+
+      var c = snapshot.child("events").exists();
+      if (c) {
+          var eventsRef = snapshot.child("events");
+
+          eventsRef.forEach(function(childSnapshot) {
+            let id = childSnapshot.key;
+            // var childData = childSnapshot.val();
+            let title = childSnapshot.child("title").val();
+            let description = childSnapshot.child("body").val();
+            let date = childSnapshot.child("date").val();
+
+            dates.push(date);
+            titles.push(title);
+            descriptions.push(description);
+            ids.push(id);
+            numevents += 1;
+          });
+      } else {
+          window.alert("username event doesn't exist, please try again");
+      }
+    });
+    //sorting dates
+    setTimeout(function(){
+      var indices = new Array(numevents);
+      for (var i = 0; i < numevents; ++i) indices[i] = i;
+      indices.sort(function (a, b) { return dates[a] < dates[b] ? -1 : dates[a] > dates[b] ? 1 : 0; });
+      console.log(indices);
+
+      var dates_sorted = [];
+      var titles_sorted = [];
+      var descriptions_sorted = [];
+      var ids_sorted = []
+
+      setTimeout(function() {
+        for (i = 0; i < numevents; i++) {
+          dates_sorted[i] = dates[indices[i]];
+          titles_sorted[i] = titles[indices[i]];
+          descriptions_sorted[i] = descriptions[indices[i]];
+          ids_sorted[i] = ids[indices[i]];
+        }
+        // console.log(dates_sorted);
+        // console.log(titles_sorted);
+        // console.log(descriptions_sorted);
+        // console.log(ids_sorted);
+        datesP = dates_sorted;
+        console.log("lalala"+dates);
+        let listofevents = [dates_sorted, titles_sorted, descriptions_sorted, ids_sorted];
+        console.log(listofevents);
+        addEvents(listofevents);
+
+        return listofevents;
+      }, 500)
+    }, 500)
+  }
+
+  getevents('asdf', doAll);
+
+  
+
+    ///////////////////////////////////////////////////////////////////
+    function doAll(listofevents){
+
+      var datesN = listofevents[0];
+      var title = listofevents[1];
+      var info = listofevents[2];
+
+
     //Sample dates
-    var datesN = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
-    var title = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
-    var info = ["aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa ", "bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb ", "cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc ", "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd ", "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee ", "ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff "];
-    var picture = [["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"]];
+    // var datesN = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
+    // var title = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
+    // var info = ["aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa ", "bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb ", "cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc ", "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd ", "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee ", "ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff "];
+    var picture = [["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"]];
     //For the purpose of stringifying MM/DD/YYYY date format
     var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
 
     function oldToNew(dates) {
       var list = [];
       for (i = 0; i < dates.length; i++) {
-        var date = dates[i];
+        var date = dates[i] + "";
+        console.log(date);
         var day = date.slice(6, 8);
         var month = date.slice(4, 6);
         var year = date.slice(0, 4);
@@ -417,6 +523,42 @@
     };
 
     //dealing with left and right button
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  
+  }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      console.log("slides: " + slides.style);
+      if (n > slides.length) {
+        slideIndex = 1;
+      }    
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+    }
+
+
     function goingLeft() {
       //if most right
       var currentActive = document.getElementsByClassName("active")[0].id;
@@ -435,44 +577,18 @@
       //if most right
       var currentActive = document.getElementsByClassName("active")[0].id;
       var cirNum = currentActive.slice(6);
-      if (cirNum != (dates.length - 1)) {
+      if (cirNum != (datesP.length - 1)) {
         plusSlides(1);
         var newNum = parseInt(cirNum) + 1;
         var newCir = "#circle" + newNum;
         var newSpan = "#span" + newNum;
         $(".active").removeClass("active");
         $(newCir).addClass("active");
-      }  
-    }
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      if (n > slides.length) {
-        slideIndex = 1;
-      }    
-      if (n < 1) {
-        slideIndex = slides.length;
       }
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-      }
-      slides[slideIndex-1].style.display = "block";
+
     }
+
+    console.log("ldsgfla"+datesP); 
   </script>
 
 </html> 
