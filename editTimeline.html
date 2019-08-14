@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src="https://hammerjs.github.io/dist/hammer.js"></script>
 <!-- "https://code.tutsplus.com/tutorials/how-to-create-presentation-slides-with-html-and-css--net-19870" -->
 <html>
   <style>
@@ -9,7 +10,22 @@
     padding: 0;
     box-sizing: border-box;
   }
-
+  .add-ev-button {
+  border-radius: 50%;
+  background-color: #C67B68;
+  border: none;
+  color: black;
+  height: 70px;
+  width: 70px;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  top: 180px;
+  right: 50px;
+  position: absolute;
+}
   button {
     background: transparent;
     border: none;
@@ -69,7 +85,8 @@
     list-style-type: none;
     width: 160px;
     height: 3px;
-    background: #fff;
+    background: #000;
+
   }
 
   .timeline ol li:last-child {
@@ -243,25 +260,26 @@
     <h1>Edit Mode</h1>
   </div>
 </section>
+<button class="add-ev-button"> + </button>
 <div>
 <section class="timeline">
   <ol>
-    <li>
-      <div>
+    <!-- <li>
+      <div class="ev-square" id="10">
         <time>Jack's New Car</time>
         <h4> July 1, 1934 </h4>
         Jack gets a new car and relly likes it.
       </div>
     </li>
     <li>
-      <div>
+      <div class="ev-square" id="12">
         <time>Jack Gets Engaged</time>
         <h4> July 1, 1936 </h4>
         Jack gets asked if he can get married
       </div>
     </li>
-
-    <li></li>
+  -->
+    <!-- <li></li> -->
   </ol>
 
   <div class="arrows">
@@ -297,6 +315,7 @@
     animateTl(xScrolling, arrows, timeline);
     setSwipeFn(timeline, arrowPrev, arrowNext);
     setKeyboardFn(arrowPrev, arrowNext);
+    //addEvents();
   }
 
   // SET EQUAL HEIGHTS
@@ -378,38 +397,8 @@
     hammer.on("swiperight", () => prev.click());
   }
 
-  var dates = ["Jan 5 1941", "March 10 1941", "April 3 1948", "June 10 1957"]
-  var titles = ["Cat in a hat", "Turtle in a shell", "Dear in basket", "Jack gets dinner"]
-  var descriptions = ["aaaaaaaaaaaaaa aaaaaa aaaa aaaaaaa aaaaaaaa", "bbbbbb bbbb bbb bbbb bbbbb bbbbb bbbbb bbb", "cccc ccc ccccc ccccc ccccc cccccc ccccc", "dddddd dddd ddd ddd dddd dddd dddd dddd dddd"]
-  // Append events
-  function addEvents(){
-
-    // do the main ones
-    for (i = 0; i < dates.length - 1; i++){
-      var htmlToAdd =
-        "<li><div><time>"
-        + titles[i] +
-        "</time><h4>"
-        + dates[i] +
-        "</h4>"
-        + descriptions[i] +
-        "</div></li>";
-      $(".timeline").append(htmlToAdd);
-    }
-
-    //do the last one
-    var lastEvent =
-      "<li><div><time>"
-      + titles[dates.length - 1] +
-      "</time><h4>"
-      + dates[dates.length - 1] +
-      "</h4>"
-      + descriptions[dates.length - 1] +
-      "</div></li>";
-    $(".timeline").append(lastEvent);
 
 
-  }
 
   // ADD BASIC KEYBOARD FUNCTIONALITY
   function setKeyboardFn(prev, next) {
@@ -429,6 +418,53 @@
     });
   }
 
+  var dates = ["Jan 5 1941", "March 10 1941", "April 3 1948", "June 10 1957"];
+  var titles = ["Cat in a hat", "Turtle in a shell", "Dear in basket", "Jack gets dinner"];
+  var descriptions = ["aaaaaaaaaaaaaa aaaaaa aaaa aaaaaaa aaaaaaaa", "bbbbbb bbbb bbb bbbb bbbbb bbbbb bbbbb bbb", "cccc ccc ccccc ccccc ccccc cccccc ccccc", "dddddd dddd ddd ddd dddd dddd dddd dddd dddd"];
+  var ids = [1, 2, 3, 4];
+  // Append events
+  function addEvents(){
+    // console.log("add events");
+
+    // do the middle events ones
+    for (i = 0; i < dates.length - 1; i++){
+      var htmlToAdd =
+        "<li><div class='ev-square' id='" + ids[i] + "'><time>"
+        + titles[i] +
+        "</time><h4>"
+        + dates[i] +
+        "</h4>"
+        + descriptions[i] +
+        "</div></li>";
+      $(".timeline ol").append(htmlToAdd);
+    }
+
+    //do the last one
+    var lastEvent =
+      "<li><div class='ev-square' id='"+ ids[dates.length - 1] + "'><time>"
+      + titles[dates.length - 1] +
+      "</time><h4>"
+      + dates[dates.length - 1] +
+      "</h4>"
+      + descriptions[dates.length - 1] +
+      "</div></li><li></li>";
+    $(".timeline ol").append(lastEvent);
+
+
+  }
+
+  addEvents();
+
+  // click detections
+  $(".add-ev-button").click(function() {
+    console.log("add event button clicked");
+  });
+
+  $(".ev-square").click(function(event){
+    console.log("event has been clicked");
+    var curr_id = this.id || "No ID!";
+    console.log(curr_id);
+  })
 })();
 
   </script>
