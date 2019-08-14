@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Rochester&display=swap" rel="stylesheet">
+  <link href="https://fonts.google.com/specimen/Sriracha" rel="stylesheet">     
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <style>
     * {box-sizing: border-box}
-    body {font-family: Verdana, sans-serif; margin:0; background-color: #BEAE8C}
+    body {margin:0; background-color: #BEAE8C}
     .mySlides {display: none}
     img {
       vertical-align: middle;
@@ -198,26 +200,41 @@
     left: 50%;
     margin-left: -350px;
     margin-top: 10%;
-    border: 5px solid black;
   }
+
   .title {
     position: absolute;
     top: 7.5%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'Rochester';
+    font-weight: bold;
+    color: black;
+    font-size: 50px;
+
   }
+
   .date {
     position: absolute;
     top: 12.5%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'Sriracha';
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 10px;
   }
   p {
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 5%;
     max-width: 300px;
     word-wrap: break-word;
+    font-family: 'Sriracha';
+    color: black;
+    font-size: 20px;
   }
   .pictureContainer {
     position: relative;
@@ -226,7 +243,6 @@
     margin-top: -500px;
     height: 300px;
     width: 300px;
-    border: 5px solid black;
   }
   .picture {
     width: 300px;
@@ -310,7 +326,7 @@
         for (j = 0; j < picture[0].length; j++) {
           htmlPic = htmlPic + ' <img class="picture" src="' + picture[0][j] + '"> <br>';
         }
-        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / 1</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide"> <div class="title">'+ title[0] +'</div> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption Text</div> </div>');
+        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / 1</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide"> <div class="title">'+ title[0] +'</div> <br> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption Text</div> </div>');
         //This is what you really want.
       } else if (dates.length >= 2) {
         //pictureHTMl
@@ -336,7 +352,7 @@
         //Draw first date circle
         $("#line").append('<div class="circle" id="circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
 
-        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + '1' +'"> <div class="title">'+ title[0] +'</div> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[0] + '</div> </div>');
+        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + '1' +'"> <div class="title">'+ title[0] +'</div> <br> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[0] + '</div> </div>');
 
         //Loop through middle dates
         for (i = 1; i < dates.length - 1; i++) {
@@ -357,7 +373,7 @@
           //Draw the date circle
           $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
 
-          $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[i] +'</div> <div class="date">'+ dateSpan(dates[i]) +'</div> <p>'+ info[i] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
+          $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[i] +'</div> <br> <div class="date">'+ dateSpan(dates[i]) +'</div> <p>'+ info[i] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
         }
 
         //Draw the last date circle
@@ -368,7 +384,7 @@
 
         $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + 99 + '%;"><div class="popupSpan">' + dateSpan(dates[dates.length - 1]) + '</div></div>'); 
 
-        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[0] +'</div> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
+        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[i] +'</div> <br> <div class="date">'+ dateSpan(dates[i]) +'</div> <p>'+ info[i] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
       }
 
       $(".circle:first").addClass("active");
