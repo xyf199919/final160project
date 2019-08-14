@@ -59,9 +59,20 @@
 </div>
 <form action="/action_page.php">
 
-  <input type="text" name="firstname"><br>
+  <input type="text" id = "title"/><br>
 
 </form>
+<form action="/action_page.php">
+
+  <input type="text" id = "description"/><br>
+
+</form>
+<form action="/action_page.php">
+
+  <input type="text" id = "date"/><br>
+
+</form>
+
 
 
 </div>
@@ -89,7 +100,29 @@
 
 
 -->
+  <script>
+    function createDescription() {
+      var description = document.getElementbyId("description");
+      if (description.value != "")
 
+    }
+    function createTitle() {
+      var description = document.getElementbyId("title");
+      if (title.value != "")
+
+    }
+    function createDate() {
+      var date = document.getElementbyId("date");
+      if (date.value != "")
+
+    }
+
+
+
+
+    var title = document.getElementbyId("title");
+    var date = document.getElementbyId("date");
+  </script>
 </body>
 
 </html>
