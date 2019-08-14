@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <style>
+    * {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0; background-color: #BEAE8C}
+    .mySlides {display: none}
+    img {
+      vertical-align: middle;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+      position: relative;
+      margin: auto;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+
+    /* Fading animation */
+    .fade {
+      -webkit-animation-name: fade;
+      -webkit-animation-duration: 1.5s;
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @-webkit-keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .prev, .next,.text {font-size: 11px}
+    }
+
+    .slide {
+      margin-top: -103px;
+      height: 700px;
+      width: 500px;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+      z-index: -1;
+      }
+
+    #lineCont {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: 7.5%;
+  }
+
+  #line {
+    height: 6px;
+    width: 70%;
+    background: #8E8060;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    position: fixed;
+    bottom: 7.5%;
+    left: 14%;
+  }
+
+  #topLine {
+    height: 3px;
+    width: 100%;
+    background: #8E8060;
+    transform: translateY(-50%);
+    position: fixed;
+    top: 15%;
+  }
+
+  #span {
+    display: none;
+    width: 70%;
+    text-align: center;
+    color: #8E8060;
+  }
+
+  .circle {
+    width: 20px;
+    height: 20px;
+    background: #BEAE8C;
+    border-radius: 15px;
+    position: absolute;
+    top: -7px;
+    border: 2px solid #8E8060;
+  }
+  .popupSpan {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    white-space: nowrap;
+    display: inline-block;
+    color: #8E8060;
+    top: 20px;
+    left: -75px;
+    display: none;
+    transition: all 0.1s ease-out;
+  }
+
+  .popupSpan {
+    top: 20px;
+  }
+
+  .hover {
+    background-color: #8E8060;
+  }
+
+  .active {
+    background-color: #8E8060; 
+  }
+
+  .active .popupSpan {
+    top: -40px;
+  }
+
+  span {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 30%;
+      transition: all 0.2s ease-out;
+    }
+  .right {
+    left: 200%;
+  }
+  .center {
+    left: 0% !important;
+  }
+  .left {
+    left: -100%;
+  }
+  /* Container holding the image and the text */
+  .container {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 500px;
+    width: 700px;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: 10%;
+    border: 5px solid black;
+  }
+  .title {
+    position: absolute;
+    top: 7.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .date {
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  p {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    max-width: 300px;
+    word-wrap: break-word;
+  }
+  .pictureContainer {
+    position: relative;
+    text-align: center;
+    left: 50%;
+    margin-top: -500px;
+    height: 300px;
+    width: 300px;
+    border: 5px solid black;
+  }
+  .picture {
+    width: 300px;
+    height: 150px;
+  }
+  .topleft {
+  top: 8px;
+  left: 16px;
+  width: 10%;
+  height: 10%;
+}
+
+
+
+  </style>
+  
+  <body>
+    <div class="button" style="left:70%">Edit Mode</div>
+    <div class="button" style="left:80%">View Mode</div>
+    <div class="button" style="left:90%">Logout</div>
+    <div id="topLine"> </div>
+    <div class="slideshow-container">
+      <a class="prev" onclick="goingLeft()">&#10094;</a>
+      <a class="next" onclick="goingRight()">&#10095;</a>
+    </div>
+
+
+    <div id="lineCont"> 
+      <div id="line"></div>
+      <div id="span">Dates Placeholder</div>
+    </div>
+
+  </body>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    //Sample dates
+    var datesN = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
+    var title = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
+    var info = ["aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa ", "bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb ", "cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc ", "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd ", "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee ", "ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff "];
+    var picture = [["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"]];
+    //For the purpose of stringifying MM/DD/YYYY date format
+    var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function oldToNew(dates) {
+      var list = [];
+      for (i = 0; i < dates.length; i++) {
+        var date = dates[i];
+        var day = date.slice(6, 8);
+        var month = date.slice(4, 6);
+        var year = date.slice(0, 4);
+        list.push(month + "/" + day + "/" + year);
+      }
+      return list;
+    }
+    var dates = oldToNew(datesN);
+    console.log(dates);
+
+    //Format MM/DD/YYYY into string
+    function dateSpan(date) {
+      var month = date.split('/')[0];
+      month = monthSpan[month - 1];
+      var day = date.split('/')[1];
+      if (day.charAt(0) == '0') {
+        day = day.charAt(1);
+      }
+      var year = date.split('/')[2];
+
+      //Spit it out!
+      return month + " " + day + ", " + year;
+    }
+
+    //Main function. Draw your circles.
+    function makeCircles() {
+      //Forget the timeline if there's only one date. Who needs it!?
+      if (dates.length < 2) {
+        $("#line").hide();
+        $("#span").show().text(dateSpan(dates[0]));
+        //pictureHTMl
+        var htmlPic = '';
+        for (j = 0; j < picture[0].length; j++) {
+          htmlPic = htmlPic + ' <img class="picture" src="' + picture[0][j] + '"> <br>';
+        }
+        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / 1</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide"> <div class="title">'+ title[0] +'</div> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption Text</div> </div>');
+        //This is what you really want.
+      } else if (dates.length >= 2) {
+        //pictureHTMl
+        var htmlPic = '';
+        for (j = 0; j < picture[0].length; j++) {
+          htmlPic = htmlPic + ' <img class="picture" src="' + picture[0][j] + '"> <br>';
+        }
+        //Set day, month and year variables for the math
+        var first = dates[0];
+        var last = dates[dates.length - 1];
+
+        var firstMonth = parseInt(first.split('/')[0]);
+        var firstDay = parseInt(first.split('/')[1]);
+        var firstYear = parseInt(first.split('/')[2]);
+
+        var lastMonth = parseInt(last.split('/')[0]);
+        var lastDay = parseInt(last.split('/')[1]);
+        var lastYear = parseInt(last.split('/')[2]);
+
+        //Integer representation of the last day. The first day is represnted as 0
+        var lastInt = ((lastYear - firstYear) * 256) + ((lastMonth - firstMonth) * 30) + (lastDay - firstDay);
+
+        //Draw first date circle
+        $("#line").append('<div class="circle" id="circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
+
+        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + '1' +'"> <div class="title">'+ title[0] +'</div> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[0] + '</div> </div>');
+
+        //Loop through middle dates
+        for (i = 1; i < dates.length - 1; i++) {
+          //pictureHTMl
+          var htmlPic = '';
+          for (j = 0; j < picture[i].length; j++) {
+            htmlPic = htmlPic + ' <img class="picture" src="' + picture[i][j] + '"> <br>';
+          }
+          var thisMonth = parseInt(dates[i].split('/')[0]);
+          var thisDay = parseInt(dates[i].split('/')[1]);
+
+          //Integer representation of the date
+          var thisInt = ((thisMonth - firstMonth) * 30) + (thisDay - firstDay);
+
+          //Integer relative to the first and last dates
+          var relativeInt = thisInt / lastInt;
+
+          //Draw the date circle
+          $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
+
+          $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[i] +'</div> <div class="date">'+ dateSpan(dates[i]) +'</div> <p>'+ info[i] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
+        }
+
+        //Draw the last date circle
+        var htmlPic = '';
+        for (j = 0; j < picture[i].length; j++) {
+          htmlPic = htmlPic + ' <img class="picture" src="' + picture[i][j] + '"> <br>';
+        }
+
+        $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + 99 + '%;"><div class="popupSpan">' + dateSpan(dates[dates.length - 1]) + '</div></div>'); 
+
+        $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[0] +'</div> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
+      }
+
+      $(".circle:first").addClass("active");
+    }
+
+    makeCircles();
+
+    $(".circle").mouseenter(function() {
+      $(this).addClass("hover");
+    });
+
+    $(".circle").mouseleave(function() {
+      $(this).removeClass("hover");
+    });
+
+    $(".circle").click(function() {
+      var spanNum = $(this).attr("id");
+      selectDate(spanNum);
+    });
+
+    function selectDate(selector) {
+      var cirNum = selector.slice(6);
+      currentSlide(parseInt(cirNum) + 1);
+      $selector = "#" + selector;
+      $spanSelector = $selector.replace("circle", "span");
+      var current = $selector.replace("circle", "");
+      
+      $(".active").removeClass("active");
+      $($selector).addClass("active");
+    };
+
+    //dealing with left and right button
+    function goingLeft() {
+      //if most right
+      var currentActive = document.getElementsByClassName("active")[0].id;
+      var cirNum = currentActive.slice(6);
+      if (cirNum != "0") {
+        plusSlides(-1);
+        var newNum = parseInt(cirNum) - 1;
+        var newCir = "#circle" + newNum;
+        var newSpan = "#span" + newNum;
+        $(".active").removeClass("active");
+        $(newCir).addClass("active");
+      }  
+    }
+    
+    function goingRight() {
+      //if most right
+      var currentActive = document.getElementsByClassName("active")[0].id;
+      var cirNum = currentActive.slice(6);
+      if (cirNum != (dates.length - 1)) {
+        plusSlides(1);
+        var newNum = parseInt(cirNum) + 1;
+        var newCir = "#circle" + newNum;
+        var newSpan = "#span" + newNum;
+        $(".active").removeClass("active");
+        $(newCir).addClass("active");
+      }  
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) {
+        slideIndex = 1;
+      }    
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+    }
+  </script>
+
+</html> 
