@@ -195,12 +195,32 @@
     });
   }
 
+  //list of Month
+  var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  //change the formate of a given date
+  function changeDate(date) {
+    var day = date.slice(6, 8);
+    var month = date.slice(4, 6);
+    var year = date.slice(0, 4);
+    console.log(month);
+    month = monthSpan[month - 1];
+    date = month + "/" + day + "/" + year;
+    var day = date.split('/')[1];
+    if (day.charAt(0) == '0') {
+      day = day.charAt(1);
+    }
+    var year = date.split('/')[2];
+    //Spit it out!
+    return month + " " + day + ", " + year;
+  }
 
   // var dates = ["Jan 5 1941", "March 10 1941", "April 3 1948", "June 10 1957"];
   // var titles = ["Cat in a hat", "Turtle in a shell", "Dear in basket", "Jack gets dinner"];
   // var descriptions = ["aaaaaaaaaaaaaa aaaaaa aaaa aaaaaaa aaaaaaaa", "bbbbbb bbbb bbb bbbb bbbbb bbbbb bbbbb bbb", "cccc ccc ccccc ccccc ccccc cccccc ccccc", "dddddd dddd ddd ddd dddd dddd dddd dddd dddd"];
   // var ids = [1, 2, 3, 4];
   // Append events
+
   function addEvents(listofevents){
     // console.log("add events");
     // do the middle events ones
@@ -211,24 +231,32 @@
     var ids = listofevents[3];
 
     for (i = 0; i < dates.length - 1; i++){
+      var shortDescriptions = descriptions[i];
+      if (shortDescriptions.length > 40) {
+        shortDescriptions = shortDescriptions.slice(0, 40) + "...";
+      }
       var htmlToAdd =
         "<li><div class='ev-square' id='" + ids[i] + "'>" + "<time>"
         + titles[i] +
         "</time><h4>"
-        + dates[i] +
+        + changeDate(dates[i]) +
         "</h4>"
-        + descriptions[i] +
+        + shortDescriptions +
         "</div></li>";
       $(".timeline ol").append(htmlToAdd);
     }
     //do the last one
+    var shortDescriptions = descriptions[dates.length - 1];
+    if (shortDescriptions.length > 40) {
+        shortDescriptions = shortDescriptions.slice(0, 40) + "...";
+      }
     var lastEvent =
       "<li><div class='ev-square' id='"+ ids[dates.length - 1] + "'><time>"
       + titles[dates.length - 1] +
       "</time><h4>"
-      + dates[dates.length - 1] +
+      + changeDate(dates[dates.length - 1]) +
       "</h4>"
-      + descriptions[dates.length - 1] +
+      + shortDescriptions +
       "</div></li><li></li>";
     $(".timeline ol").append(lastEvent);
   }
