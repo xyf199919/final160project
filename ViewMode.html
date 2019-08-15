@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Rochester&display=swap" rel="stylesheet">
+  <link href="https://fonts.google.com/specimen/Sriracha" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/presentation.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <div class = "rightsidepage">
+    </div>
+    <div class = "leftsidepage">
+    </div>
+    <div class = "navbar">
+      <div class="navbar_logo">
+        <input type="image" src = "cheers.jpg" height = "200" width = "300">
+
+      </div>
+
+      <div class="navbar_buttons">
+        <input type="image" src="editblack.png"/>
+        <input type="image" src="viewred.png"/>
+        <input type="image" src="logout.png"/>
+      </div>
+
+
+    <div class="slideshow-container">
+      <a class="prev" onclick="goingLeft()">&#10094;</a>
+      <a class="next" onclick="goingRight()">&#10095;</a>
+    </div>
+
+
+    <div id="lineCont">
+      <div id="line"></div>
+      <div id="span">Dates Placeholder</div>
+    </div>
+
+  </body>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2QfwV6qOsO91qe6oPx8jA1h_nrINl2E0",
+      authDomain: "preludepractice-1149f.firebaseapp.com",
+      databaseURL: "https://preludepractice-1149f.firebaseio.com",
+      projectId: "preludepractice-1149f",
+      storageBucket: "preludepractice-1149f.appspot.com",
+      messagingSenderId: "400935945127"
+    };
+    firebase.initializeApp(config);
+    var ref = firebase.database().ref();
+
+  </script>
+  <script src="register.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    getevents('asdf', doAll);
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+    function doAll(listofevents){
+      var datesP = listofevents[0];
+      var datesN = listofevents[0];
+      var title = listofevents[1];
+      var info = listofevents[2];
+
+
+      //Sample dates
+      // var datesN = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
+      // var title = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
+      // var info = ["aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa ", "bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb ", "cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc ", "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd ", "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee ", "ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff "];
+      var picture = [["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"]];
+      //For the purpose of stringifying MM/DD/YYYY date format
+      var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+
+      var dates = oldToNew(datesN);
+      console.log(dates);
+      makeCircles();
+
+      function oldToNew(dates) {
+        var list = [];
+        for (i = 0; i < dates.length; i++) {
+          var date = dates[i] + "";
+          console.log(date);
+          var day = date.slice(6, 8);
+          var month = date.slice(4, 6);
+          var year = date.slice(0, 4);
+          list.push(month + "/" + day + "/" + year);
+        }
+        return list;
+      }
+
+
+      //Format MM/DD/YYYY into string
+      function dateSpan(date) {
+        var month = date.split('/')[0];
+        month = monthSpan[month - 1];
+        var day = date.split('/')[1];
+        if (day.charAt(0) == '0') {
+          day = day.charAt(1);
+        }
+        var year = date.split('/')[2];
+
+        //Spit it out!
+        return month + " " + day + ", " + year;
+      }
+
+      //Main function. Draw your circles.
+      function makeCircles() {
+        //Forget the timeline if there's only one date. Who needs it!?
+        if (dates.length < 2) {
+          $("#line").hide();
+          $("#span").show().text(dateSpan(dates[0]));
+          //pictureHTMl
+          var htmlPic = '';
+          for (j = 0; j < picture[0].length; j++) {
+            htmlPic = htmlPic + ' <img class="picture" src="' + picture[0][j] + '"> <br>';
+          }
+          $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / 1</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide"> <div class="title">'+ title[0] +'</div> <br> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption Text</div> </div>');
+          //This is what you really want.
+        } else if (dates.length >= 2) {
+          //pictureHTMl
+          var htmlPic = '';
+          for (j = 0; j < picture[0].length; j++) {
+            htmlPic = htmlPic + ' <img class="picture" src="' + picture[0][j] + '"> <br>';
+          }
+          //Set day, month and year variables for the math
+          var first = dates[0];
+          var last = dates[dates.length - 1];
+
+          var firstMonth = parseInt(first.split('/')[0]);
+          var firstDay = parseInt(first.split('/')[1]);
+          var firstYear = parseInt(first.split('/')[2]);
+
+          var lastMonth = parseInt(last.split('/')[0]);
+          var lastDay = parseInt(last.split('/')[1]);
+          var lastYear = parseInt(last.split('/')[2]);
+
+          //Integer representation of the last day. The first day is represnted as 0
+          var lastInt = ((lastYear - firstYear) * 256) + ((lastMonth - firstMonth) * 30) + (lastDay - firstDay);
+
+          //Draw first date circle
+          $("#line").append('<div class="circle" id="circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
+
+          $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">1 / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + '1' +'"> <div class="title">'+ title[0] +'</div> <br> <div class="date">'+ dateSpan(dates[0]) +'</div> <p>'+ info[0] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[0] + '</div> </div>');
+
+          //Loop through middle dates
+          for (i = 1; i < dates.length - 1; i++) {
+            //pictureHTMl
+            var htmlPic = '';
+            for (j = 0; j < picture[i].length; j++) {
+              htmlPic = htmlPic + ' <img class="picture" src="' + picture[i][j] + '"> <br>';
+            }
+            var thisMonth = parseInt(dates[i].split('/')[0]);
+            var thisDay = parseInt(dates[i].split('/')[1]);
+
+            //Integer representation of the date
+            var thisInt = ((thisMonth - firstMonth) * 30) + (thisDay - firstDay);
+
+            //Integer relative to the first and last dates
+            var relativeInt = thisInt / lastInt;
+
+            //Draw the date circle
+            $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
+
+            $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[i] +'</div> <br> <div class="date">'+ dateSpan(dates[i]) +'</div> <p>'+ info[i] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
+          }
+
+          //Draw the last date circle
+          var htmlPic = '';
+          for (j = 0; j < picture[i].length; j++) {
+            htmlPic = htmlPic + ' <img class="picture" src="' + picture[i][j] + '"> <br>';
+          }
+
+          $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + 99 + '%;"><div class="popupSpan">' + dateSpan(dates[dates.length - 1]) + '</div></div>');
+
+          $(".slideshow-container").append('<div class="mySlides fade"> <div class="numbertext">'+ (i+1) +' / ' + dates.length +'</div> <div class="container"> <img src="https://s3-alpha-sig.figma.com/img/a8f4/89a8/eafd4c862bbce408dd8a42ecc76538f5?Expires=1566777600&Signature=dfo-EU63wkJNskKR4EanM~Td8enKmKRWssa0JJMU9PTIHaV9TkragTu5C-7j~SlnbGL3XHAtVLD0DeGVp-2DFubl87PpgD6gyuLqnhYrynjTg42JPLT2bsU1d4hYVMzYNobjOxOVhayTkSnsmWe64dB5YAsOP1TPSoAkdLg9qoVOnQVxvOqg9~O-WditUPp2YBeNopxWF8yk5wCZ1wX27iPdEkKQFmFMwRvzdAcgoT0fseAL9s6seT4bbnKPew98Bs19LJraAM-dShVS48vmbBNLYuUsfhiy367VcisC0F1DylwXywPVcqrb1EVLvNR1tY7qT7Y8Ifs7xSYX4l22xQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" class="slide" id="slide' + (i+1) +'"> <div class="title">'+ title[i] +'</div> <br> <div class="date">'+ dateSpan(dates[i]) +'</div> <p>'+ info[i] +'</p> <div class="pictureContainer">'+ htmlPic +' </div> </div> <div class="text">Caption ' + dates[i] + '</div> </div>');
+        }
+
+        $(".circle:first").addClass("active");
+      }
+
+
+
+      $(".circle").mouseenter(function() {
+        $(this).addClass("hover");
+      });
+
+      $(".circle").mouseleave(function() {
+        $(this).removeClass("hover");
+      });
+
+      $(".circle").click(function() {
+        var spanNum = $(this).attr("id");
+        selectDate(spanNum);
+      });
+
+      function selectDate(selector) {
+        var cirNum = selector.slice(6);
+        currentSlide(parseInt(cirNum) + 1);
+        $selector = "#" + selector;
+        $spanSelector = $selector.replace("circle", "span");
+        var current = $selector.replace("circle", "");
+
+        $(".active").removeClass("active");
+        $($selector).addClass("active");
+      };
+
+    //dealing with left and right button
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////endof doall
+    }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      console.log("slides: " + slides.style);
+      if (n > slides.length) {
+        slideIndex = 1;
+      }
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+    }
+
+
+    function goingLeft() {
+      //if most right
+      var currentActive = document.getElementsByClassName("active")[0].id;
+      var cirNum = currentActive.slice(6);
+      if (cirNum != "0") {
+        plusSlides(-1);
+        var newNum = parseInt(cirNum) - 1;
+        var newCir = "#circle" + newNum;
+        var newSpan = "#span" + newNum;
+        $(".active").removeClass("active");
+        $(newCir).addClass("active");
+      }
+    }
+
+    function goingRight() {
+      //if most right
+      var currentActive = document.getElementsByClassName("active")[0].id;
+      var cirNum = currentActive.slice(6);
+      if (cirNum != (datesP.length - 1)) {
+        plusSlides(1);
+        var newNum = parseInt(cirNum) + 1;
+        var newCir = "#circle" + newNum;
+        var newSpan = "#span" + newNum;
+        $(".active").removeClass("active");
+        $(newCir).addClass("active");
+      }
+
+    }
+
+    console.log("ldsgfla"+datesP);
+  </script>
+
+</html>

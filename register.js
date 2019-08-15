@@ -32,8 +32,10 @@ function login() {
     }
   });
 }
-//updated event with id format
-function getevents(username) {
+
+
+
+function getevents(username, callback) {
 	var username = 'asdf';
 	var dates = [];
 	var titles =[];
@@ -91,6 +93,7 @@ function getevents(username) {
 			// console.log(ids_sorted);
 			let listofevents = [dates_sorted, titles_sorted, descriptions_sorted, ids_sorted];
 			console.log(listofevents);
+			callback(listofevents);
 
 			return listofevents;
 		}, 500)
