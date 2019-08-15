@@ -128,6 +128,50 @@ function editevent(username, id, date, title, body) {
   });
 }
 
+function getoneevent(username, id, callback) {
+	var userref = firebase.database().ref(username);
+
+	userref.once("value")
+	.then(function(snapshot) {
+
+		var c = snapshot.child("events").exists();
+		if (c) {
+				var eventsRef = snapshot.child("events");
+				eventsRef.forEach(function(childSnapshot) {
+					let foundid = childSnapshot.key;
+					if (foundid == id) {
+						// var childData = childSnapshot.val();
+						let title = childSnapshot.child("title").val();
+						let body = childSnapshot.child("body").val();
+						let date = childSnapshot.child("date").val();
+						console.log([date, title, body]);
+						callback([date, title, body]);
+						return [date, title, body];
+
+					}
+				});
+		} else {
+				window.alert("no events");
+		}
+	});
+	//
+	// //new
+	//
+	// userref.once("value")
+  // .then(function(snapshot) {
+	//
+  //   var c = snapshot.child("events").child(id).exists();
+  //   if (c) {
+	// 			let date = ref.child(username).child("events").child(id).child("date").val();
+	// 			let title = ref.child(username).child("events").child(id).child("title").val();
+	// 			let body = ref.child(username).child("events").child(id).child("body").val();
+	//
+  //   } else {
+	// 			window.alert("id doesn't exist");
+	// 	}
+  // });
+}
+
 function addevent(username, date, title, body){
 	//TODO
   var ref = firebase.database().ref();

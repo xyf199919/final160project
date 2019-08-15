@@ -106,6 +106,19 @@
     var username = localStorage.getItem("username");
     // var editing = false;
     // var id = '-LmBsPBkRph94qdFd8sF';
+    var editing = localStorage.getItem("editing");
+    if (editing == "true") {
+      let tempbody = localStorage.getItem("body");
+      let temptitle = localStorage.getItem("title");
+      let tempdate = localStorage.getItem("date");
+
+      var bodyelem = document.getElementById("description");
+      var titleelem = document.getElementById("title");
+      var dateelem = document.getElementById("date");
+      bodyelem.value = tempbody;
+      titleelem.value = temptitle;
+      dateelem.value = tempdate;
+    }
 
 
 
@@ -120,7 +133,6 @@
       console.log(date);
       console.log(title);
       console.log(body);
-      let editing = localStorage.getItem("editing");
       console.log(editing);
       if (editing == "true") {
         let id = localStorage.getItem("id");

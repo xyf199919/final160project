@@ -278,9 +278,22 @@
 
     let curr_id = this.id || "NONE";
     localStorage.setItem("id", curr_id);
+    getoneevent(username, curr_id, getevent_callback);
 
-    document.location.href = "addEvent.html";
   });
+
+  function getevent_callback(listofinfo) {
+    let currdate = listofinfo[0];
+    let currtitle = listofinfo[1];
+    let currbody = listofinfo[2];
+    console.log(currdate);
+    localStorage.setItem("date", currdate);
+    localStorage.setItem("title", currtitle);
+    localStorage.setItem("body", currbody);
+    document.location.href = "addEvent.html";
+
+  }
+
 
 })();
   </script>
