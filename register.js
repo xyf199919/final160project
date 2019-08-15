@@ -41,6 +41,7 @@ function getevents(username, callback) {
 	var dates = [];
 	var titles =[];
 	var descriptions = [];
+	var images = [];
 	var ids = [];
 	var numevents = 0;
 	var userref = firebase.database().ref(username);
@@ -58,10 +59,13 @@ function getevents(username, callback) {
 					let title = childSnapshot.child("title").val();
 					let description = childSnapshot.child("body").val();
 					let date = childSnapshot.child("date").val();
+					let image = childSnapshot.child("image").val();
+					console.log(image);
 
 					dates.push(date);
 					titles.push(title);
 					descriptions.push(description);
+					images.push(image);
 					ids.push(id);
 					numevents += 1;
 				});
@@ -79,6 +83,7 @@ function getevents(username, callback) {
 		var dates_sorted = [];
 		var titles_sorted = [];
 		var descriptions_sorted = [];
+		var images_sorted = [];
 		var ids_sorted = []
 
 		setTimeout(function() {
@@ -87,12 +92,14 @@ function getevents(username, callback) {
 				titles_sorted[i] = titles[indices[i]];
 				descriptions_sorted[i] = descriptions[indices[i]];
 				ids_sorted[i] = ids[indices[i]];
+				images_sorted[i] = images[indices[i]];
+
 			}
 			// console.log(dates_sorted);
 			// console.log(titles_sorted);
 			// console.log(descriptions_sorted);
 			// console.log(ids_sorted);
-			let listofevents = [dates_sorted, titles_sorted, descriptions_sorted, ids_sorted];
+			let listofevents = [dates_sorted, titles_sorted, descriptions_sorted, ids_sorted, images_sorted];
 			console.log(listofevents);
 			callback(listofevents);
 
