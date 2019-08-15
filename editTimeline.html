@@ -267,13 +267,13 @@
     localStorage.setItem("editing", "false");
 
 
-    window.alert("add event button clicked");
+    // window.alert("add event button clicked");
     document.location.href = "addEvent.html";
   });
 
 
   $(".timeline ol").on( "click", ".ev-square", function() {
-    window.alert("event has been clicked");
+    // window.alert("event has been clicked");
     localStorage.setItem("editing", "true");
 
     let curr_id = this.id || "NONE";
