@@ -10,6 +10,7 @@ function register() {
 	ref.child(regusername).child("birthdate").set(regbirthdate);
 	ref.child(regusername).child("relativename").set(regrelativename);
 
+	localStorage.setItem("username", regusername);
 	document.location.href = "editTimeline.html";
 }
 
@@ -36,7 +37,7 @@ function login() {
 
 
 function getevents(username, callback) {
-	var username = 'asdf';
+	var username = localStorage.getItem("username");;
 	var dates = [];
 	var titles =[];
 	var descriptions = [];
@@ -65,7 +66,7 @@ function getevents(username, callback) {
 					numevents += 1;
 				});
 		} else {
-				window.alert("username event doesn't exist, please try again");
+				window.alert("there are no events currently");
 		}
 	});
 	//sorting dates
@@ -101,37 +102,35 @@ function getevents(username, callback) {
 }
 
 //assumes date is a number
-function editevent(id, date, title, body) {
-	var username = 'asdf';
-	var userref = firebase.database().ref(username);
+function editevent(username, id, date, title, body) {
+	var userref = firebase.database().ref().child(username);
 
 	userref.once("value")
   .then(function(snapshot) {
 
-    var c = snapshot.child('events/' + id).exists();
+    var c = snapshot.child("events").child(id).exists();
     if (c) {
-				var eventRef = snapshot.child('events/' + id);
-				eventRef.child('title').set(title);
-				eventRef.child('body').set(body);
-				eventRef.child('date').set(date);
+				ref.child(username).child("events").child(id).set({
+					date: date,
+					title: title,
+					body: body
+				});
     } else {
-				window.alert("so such id");
+				window.alert("id doesn't exist");
 		}
   });
 }
 
-function addevent(date, title, body){
+function addevent(username, date, title, body){
 	//TODO
-	var username = 'asdf';
-
   var ref = firebase.database().ref();
   var eventsRef = ref.child(username).child("events");
 
-  var newEventsRef = eventsRef.push({
+  var newEventsRef = eventsRef.push();
+	newEventsRef.set({
     date: date,
 		title: title,
 		body: body
   });
   var eventid = newEventsRef.key;
-  window.alert(eventid);
 }

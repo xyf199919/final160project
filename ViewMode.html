@@ -19,9 +19,9 @@
       </div>
 
       <div class="navbar_buttons">
-        <input type="image" src="editblack.png"/>
-        <input type="image" src="viewred.png"/>
-        <input type="image" src="logout.png"/>
+        <a href="editTimeline.html"><input type="image" src="edit.png"/></a>
+        <a href="ViewMode.html"><input type="image" src="view.png"/></a>
+        <a href="home.html"><input type="image" src="logout.png"/></a>
       </div>
 
 
@@ -57,29 +57,26 @@
   <script src="register.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script type="text/javascript">
-
-    getevents('asdf', doAll);
+    var datesP;
+    var username = localStorage.getItem("username");
+    getevents(username, doAll);
 //////////////////////////////////////////////////////////////////////////////////////////////////////
     function doAll(listofevents){
-      var datesP = listofevents[0];
+      datesP = listofevents[0];
       var datesN = listofevents[0];
       var title = listofevents[1];
       var info = listofevents[2];
 
+      var picture = [];
 
-      //Sample dates
-      // var datesN = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
-      // var title = ["20150612", "20150815", "20151022", "20151102", "20151222", "20161222"];
-      // var info = ["aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa ", "bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb ", "cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc cccc ", "dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd dddd ", "eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee eeee ", "ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff ffff "];
-      var picture = [["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"], ["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA", "https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"]];
+      for (i = 0; i < datesN.length; i++) {
+        picture.push(["https://imgplaceholder.com/350x225/ff7f7f/333333/fa-image"]);
+        // picture.push(["https://s3-alpha-sig.figma.com/img/896d/8076/87d4dbed169e4980f816179a9ffa07d2?Expires=1566777600&Signature=K4NFXzMx5BFLCKP07NW4iyqK~8aIGczxKhv8QDQulanO69uYae-VtiYL~vWkbRQDtC~1WjUt5ugrPx~EIY25xZlr4yDZirNzRpxdkTiTlPmVsvYpy5RDUj0BXFMyF2pgwMYsOQWFuBn01YR10Y9TS4O2e1hm5xVncf6NBTKhTvun5Gte3EaL~tDOZYEJnG1QwyMG2SOp~GkM1oKwhnQDcIZeC-CAiKDP2cQ7fIWSNO23tJAcsnDDeCRQBzxT9wQnMcGGmulAi166tvc5h9oGJRI-WIzHmm0ik9fpvbyQuOdmXpq2Qfs9Jol2XS94o7DjNyzyWZm-rbVfKuHlQ1hn4w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"]);
+      }
       //For the purpose of stringifying MM/DD/YYYY date format
       var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-
-
       var dates = oldToNew(datesN);
       console.log(dates);
-      makeCircles();
 
       function oldToNew(dates) {
         var list = [];
@@ -93,7 +90,6 @@
         }
         return list;
       }
-
 
       //Format MM/DD/YYYY into string
       function dateSpan(date) {
@@ -184,7 +180,7 @@
         $(".circle:first").addClass("active");
       }
 
-
+      makeCircles();
 
       $(".circle").mouseenter(function() {
         $(this).addClass("hover");
@@ -214,9 +210,12 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////endof doall
     }
+    var slideIndex;
+    setTimeout(function(){
+      slideIndex = 1;
+      showSlides(slideIndex);
+    }, 5000);
 
-    var slideIndex = 1;
-    showSlides(slideIndex);
 
     function plusSlides(n) {
       showSlides(slideIndex += n);
@@ -229,7 +228,7 @@
     function showSlides(n) {
       var i;
       var slides = document.getElementsByClassName("mySlides");
-      console.log("slides: " + slides.style);
+      console.log(slides);
       if (n > slides.length) {
         slideIndex = 1;
       }
@@ -271,8 +270,8 @@
       }
 
     }
-
-    console.log("ldsgfla"+datesP);
+    //
+    // console.log("ldsgfla"+datesP);
   </script>
 
 </html>

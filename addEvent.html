@@ -4,29 +4,7 @@
   <link href="https://fonts.googleapis.com/css?family=Pacifico|Pangolin|Rancho&display=swap" rel="stylesheet">
 </head>
 
-
-
-
-
-
-
 <body >
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyA2QfwV6qOsO91qe6oPx8jA1h_nrINl2E0",
-    authDomain: "preludepractice-1149f.firebaseapp.com",
-    databaseURL: "https://preludepractice-1149f.firebaseio.com",
-    projectId: "preludepractice-1149f",
-    storageBucket: "preludepractice-1149f.appspot.com",
-    messagingSenderId: "400935945127"
-  };
-  firebase.initializeApp(config);
-  var ref = firebase.database().ref();
-
-</script>
 <div class = "navbar">
   <div class="navbar_logo">
     <input type="image" src = "cheers.jpg" height = "200" width = "300">
@@ -34,9 +12,9 @@
   </div>
 
   <div class="navbar_buttons">
-    <input type="image" src="edit.png"/>
-    <input type="image" src="view.png"/>
-    <input type="image" src="logout.png"/>
+    <a href="editTimeline.html"><input type="image" src="edit.png"/></a>
+    <a href="ViewMode.html"><input type="image" src="view.png"/></a>
+    <a href="home.html"><input type="image" src="logout.png"/></a>
   </div>
 
 
@@ -77,10 +55,10 @@
 <div class="footer">
   <div class="footer_container">
     <div class = "cancel">
-      <input type = "image" src = cancel.png>
+      <input type = "image" src = cancel.png onclick= "cancel()"/>
     </div>
     <div class = "save">
-      <input type = "image" src = save.png>
+      <input type = "image" src = save.png onclick = "save()"/>
     </div>
   </div>
 </div>
@@ -106,24 +84,62 @@
 
 
 -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
   <script>
-    function createDescription() {
-      var description = document.getElementbyId("description");
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2QfwV6qOsO91qe6oPx8jA1h_nrINl2E0",
+      authDomain: "preludepractice-1149f.firebaseapp.com",
+      databaseURL: "https://preludepractice-1149f.firebaseio.com",
+      projectId: "preludepractice-1149f",
+      storageBucket: "preludepractice-1149f.appspot.com",
+      messagingSenderId: "400935945127"
+    };
+    firebase.initializeApp(config);
+    var ref = firebase.database().ref();
+
+  </script>
+  <script src="register.js"></script>
+
+  <script>
+    var username = localStorage.getItem("username");
+    // var editing = false;
+    // var id = '-LmBsPBkRph94qdFd8sF';
+
+
+
+    function cancel() {
+      document.location.href = "editTimeline.html";
     }
-    function createTitle() {
-      var description = document.getElementbyId("title");
 
+    function save() {
+      let body = document.getElementById("description").value;
+      let title = document.getElementById("title").value;
+      let date = document.getElementById("date").value;
+      console.log(date);
+      console.log(title);
+      console.log(body);
+      let editing = localStorage.getItem("editing");
+      console.log(editing);
+      if (editing == "true") {
+        let id = localStorage.getItem("id");
+        console.log(id);
+        if (id == "NONE") {
+          window.alert("no event to change");
+        } else {
+          editevent(username, id, date, title, body);
+          window.alert("event changed");
+        }
+      }
+      else {
+        addevent(username, date, title, body);
+        window.alert('event added');
+      }
+
+      document.location.href = "editTimeline.html";
     }
-    function createDate() {
-      var date = document.getElementbyId("date");
 
-    }
-
-
-
-
-    var title = document.getElementbyId("title");
-    var date = document.getElementbyId("date");
   </script>
 </body>
 

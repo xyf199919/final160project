@@ -14,9 +14,9 @@
       </div>
 
       <div class="navbar_buttons">
-        <input type="image" src="edit.png"/>
-        <input type="image" src="view.png"/>
-        <input type="image" src="logout.png"/>
+        <a href="editTimeline.html"><input type="image" src="edit.png"/></a>
+        <a href="ViewMode.html"><input type="image" src="view.png"/></a>
+        <a href="home.html"><input type="image" src="logout.png"/></a>
       </div>
 
 
@@ -40,8 +40,8 @@
         <h4> July 1, 1936 </h4>
         Jack gets asked if he can get married
       </div>
-    </li>
-  -->
+    </li> -->
+
     <!-- <li></li> -->
   </ol>
 
@@ -92,7 +92,8 @@
 
 
   // function init() {
-  var listofevents = getevents('asdf', addEvents);
+  var username = localStorage.getItem("username");
+  var listofevents = getevents(username, addEvents);
   setEqualHeights(elH);
   animateTl(xScrolling, arrows, timeline);
   setSwipeFn(timeline, arrowPrev, arrowNext);
@@ -234,13 +235,24 @@
 
   // click detections
   $(".add-ev-button").click(function() {
-    console.log("add event button clicked");
+    // var name = localStorage.getItem("name");
+    localStorage.setItem("editing", "false");
+
+
+    window.alert("add event button clicked");
+    document.location.href = "addEvent.html";
   });
-  $(".ev-square").click(function(event){
-    console.log("event has been clicked");
-    var curr_id = this.id || "No ID!";
-    console.log(curr_id);
-  })
+
+
+  $(".timeline ol").on( "click", ".ev-square", function() {
+    window.alert("event has been clicked");
+    localStorage.setItem("editing", "true");
+
+    let curr_id = this.id || "NONE";
+    localStorage.setItem("id", curr_id);
+
+    document.location.href = "addEvent.html";
+  });
 
 })();
   </script>
