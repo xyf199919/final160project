@@ -153,9 +153,10 @@
             }
             var thisMonth = parseInt(dates[i].split('/')[0]);
             var thisDay = parseInt(dates[i].split('/')[1]);
+            var thisYear = parseInt(dates[i].split('/')[2]);
 
             //Integer representation of the date
-            var thisInt = ((thisMonth - firstMonth) * 30) + (thisDay - firstDay);
+            var thisInt = ((lastYear - thisYear) * 256) + ((thisMonth - firstMonth) * 30) + (thisDay - firstDay);
 
             //Integer relative to the first and last dates
             var relativeInt = thisInt / lastInt;
