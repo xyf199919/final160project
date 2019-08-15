@@ -83,13 +83,11 @@
       //For the purpose of stringifying MM/DD/YYYY date format
       var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       var dates = oldToNew(datesN);
-      console.log(dates);
 
       function oldToNew(dates) {
         var list = [];
         for (i = 0; i < dates.length; i++) {
           var date = dates[i] + "";
-          console.log(date);
           var day = date.slice(6, 8);
           var month = date.slice(4, 6);
           var year = date.slice(0, 4);
@@ -153,6 +151,7 @@
 
           //Loop through middle dates
           for (i = 1; i < dates.length - 1; i++) {
+            console.log(i);
             //pictureHTMl
             var htmlPic = '';
             for (j = 0; j < picture[i].length; j++) {
@@ -163,7 +162,7 @@
             var thisYear = parseInt(dates[i].split('/')[2]);
 
             //Integer representation of the date
-            var thisInt = ((lastYear - thisYear) * 256) + ((thisMonth - firstMonth) * 30) + (thisDay - firstDay);
+            var thisInt = ((thisYear - firstYear) * 256) + ((thisMonth - firstMonth) * 30) + (thisDay - firstDay);
 
             //Integer relative to the first and last dates
             var relativeInt = thisInt / lastInt;
@@ -236,7 +235,6 @@
     function showSlides(n) {
       var i;
       var slides = document.getElementsByClassName("mySlides");
-      console.log(slides);
       if (n > slides.length) {
         slideIndex = 1;
       }
@@ -278,8 +276,6 @@
       }
 
     }
-    //
-    // console.log("ldsgfla"+datesP);
   </script>
 
 </html>
