@@ -34,7 +34,7 @@
 .textfield {
   border-radius: 15px;
   padding: 5px;
-  background-color: #3CBCB4;
+  background: url("navbarbackground.png");
   border-color: black;
   color: black;
   font-family: 'Indie Flower', cursive;
