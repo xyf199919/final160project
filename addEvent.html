@@ -1,7 +1,12 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="css/addevent.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Pangolin|Rancho&display=swap" rel="stylesheet">
 </head>
+
+
+
+
 
 
 
@@ -24,7 +29,7 @@
 </script>
 <div class = "navbar">
   <div class="navbar_logo">
-    <input type="image" src = file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%206.23.16%20PM.png height = "200" width = "300">
+    <input type="image" src = "cheers.jpg" height = "200" width = "300">
 
   </div>
 
@@ -38,46 +43,47 @@
 </div>
 
 
-<div class="mainbox" >
+<div class="mainbox">
   <div class="leftbox">
+    <form action="/action_page.php">
 
+      <input type="text" placeholder="Title..." id = "title"/><br>
+
+    </form>
+
+    <form action="/action_page.php">
+
+      <input type="text" placeholder="Date..." id = "date"/><br>
+
+    </form>
+
+    <form action="/action_page.php">
+
+      <textarea placeholder="Describe yourself here..." id = "description">
+      </textarea>
+
+      <br>
+
+    </form>
   </div>
 
   <div class="sidebox">
-    <input type="image" src= file:///Users/Kaavya/Desktop/23697.svg />
+    <input type="image" src= "video.png" />
     <input type="image" src="camera.png" />
     <input type="image" src="bubble.png" />
   </div>
-
-
-<div class = "save">
-<input type = "image" src = save.png>
-</div>
-<div class = "cancel">
-
-<input type = "image" src = cancel.png>
-</div>
-<form action="/action_page.php">
-
-  <input type="text" id = "title"/><br>
-
-</form>
-<form action="/action_page.php">
-
-  <input type="text" id = "description"/><br>
-
-</form>
-<form action="/action_page.php">
-
-  <input type="text" id = "date"/><br>
-
-</form>
-
-
-
 </div>
 
-
+<div class="footer">
+  <div class="footer_container">
+    <div class = "cancel">
+      <input type = "image" src = cancel.png>
+    </div>
+    <div class = "save">
+      <input type = "image" src = save.png>
+    </div>
+  </div>
+</div>
 <!--
 
 <div class = btn-group2>
@@ -110,7 +116,7 @@
     }
     function createDate() {
       var date = document.getElementbyId("date");
-    
+
     }
 
 

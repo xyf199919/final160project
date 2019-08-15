@@ -1,33 +1,54 @@
 body {
   margin: 0 ;
   padding: 0;
-  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%203.09.24%20PM.png);
+  background: url("../navbarbackground.png");
 
 }
 
 .mainbox {
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 200px);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background: #BDAD8B;
 }
 
 .leftbox {
   height: 80%;
-  width: 70%;
-
-  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%206.53.30%20PM.png);
+  width: 60%;
+  background: url("../tanscreen.png");
   float: left;
   margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftbox > form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftbox > form > input {
+  text-align: center;
+}
+
+.leftbox > form > textarea {
+  text-align: center;
+  resize: none;
 }
 
 .sidebox {
   float: left;
-  width: 15%;
+  width: 10%;
   height: 80%;
-  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%206.53.30%20PM.png);
+  background: url("../tanscreen.png");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,24 +60,23 @@ body {
   padding: 20% 0 20% 0;
 }
 
-.save {
-
+.footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
-
-.cancel {
-
-  
-}
-
 
 .navbar {
   width: 100%;
   height: 100px;
-  background-color: red;
   background-repeat: round;
   border-bottom: 1px solid #000000;
-  background-color: green;
-  background: url(file:///Users/Kaavya/Desktop/Screen%20Shot%202019-08-12%20at%203.09.24%20PM.png);
+  background: #BDAD8B;
+
 }
 
 .navbar_logo {
@@ -64,6 +84,20 @@ body {
   width: 30%;
   float: left;
 
+}
+
+.footer_container {
+  width: 550px;
+  height: 100%;
+}
+
+.save {
+  float: left;
+  margin-left: 50px;
+}
+
+.cancel {
+  float: left;
 }
 
 .navbar_logo > input {
@@ -91,4 +125,25 @@ body {
 .btn-group {
   right: 150px;
 
+}
+
+#title {
+    width: 60%;
+    height: 60px;
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+
+}
+#date {
+  height: 30px;
+  width: 30%;
+  font-size: 16px;
+  font-family: 'Rancho', cursive;
+}
+#description {
+  height: 150px;
+  width: 60%;
+  font-size: 17px;
+  font-family: 'Pangolin', cursive;
+  word-wrap: break-word;
 }
