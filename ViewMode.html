@@ -3,7 +3,8 @@
   <head>
   <link href="https://fonts.googleapis.com/css?family=Rochester&display=swap" rel="stylesheet">
   <link href="https://fonts.google.com/specimen/Sriracha" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/presentation.css"/>
+  <link rel="stylesheet" type="text/css" href="css/presentation.css"/>
+  <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
@@ -15,13 +16,10 @@
     <div class = "navbar">
       <div class="navbar_logo">
         <input type="image" src = "cheers.jpg" height = "200" width = "300">
-
       </div>
 
       <div class="navbar_buttons">
-        <a href="editTimeline.html"><input type="image" src="edit.png"/></a>
-        <a href="ViewMode.html"><input type="image" src="view.png"/></a>
-        <a href="home.html"><input type="image" src="logout.png"/></a>
+        <a href="editTimeline.html"><input type="image" src="edit.png"/></a><a href="ViewMode.html"><input type="image" src="view.png"/></a><a href="home.html"><input type="image" src="logout.png"/></a>
       </div>
 
 
@@ -71,11 +69,14 @@
 
 
       var picture = [];
-      picture.push(["https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F38%2F2015%2F06%2F12212858%2Fnatural_birth_vs_epidural_newborn_baby_hand.jpg&w=400&c=sc&poi=face&q=85"]);
-      picture.push(["https://images.summitmedia-digital.com/topgear/images/2018/01/22/oldcar_web.jpg"]);
-      picture.push(["https://assets.marthastewartweddings.com/styles/wmax-1500/d59/leah-mickael-blue-wedding-france-102803885-bride-groom-kiss/leah-mickael-blue-wedding-france-102803885-bride-groom-kiss_horiz.jpg?itok=KJORp2SI"]);
-      picture.push(["https://images.pexels.com/photos/459953/pexels-photo-459953.jpeg?cs=srgb&dl=adorable-baby-cheerful-459953.jpg&fm=jpg"]);
-      picture.push(["https://cdn.shopify.com/s/files/1/1319/5795/files/Family_grande.jpg?v=1518211855"]);
+      if (datesN.length >= 5) {
+        picture.push(["https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F38%2F2015%2F06%2F12212858%2Fnatural_birth_vs_epidural_newborn_baby_hand.jpg&w=400&c=sc&poi=face&q=85"]);
+        picture.push(["https://images.summitmedia-digital.com/topgear/images/2018/01/22/oldcar_web.jpg"]);
+        picture.push(["https://assets.marthastewartweddings.com/styles/wmax-1500/d59/leah-mickael-blue-wedding-france-102803885-bride-groom-kiss/leah-mickael-blue-wedding-france-102803885-bride-groom-kiss_horiz.jpg?itok=KJORp2SI"]);
+        picture.push(["https://images.pexels.com/photos/459953/pexels-photo-459953.jpeg?cs=srgb&dl=adorable-baby-cheerful-459953.jpg&fm=jpg"]);
+        picture.push(["https://cdn.shopify.com/s/files/1/1319/5795/files/Family_grande.jpg?v=1518211855"]);
+
+      }
 
       for (i = picture.length; i < datesN.length; i++) {
         picture.push(["https://imgplaceholder.com/350x225/ff7f7f/333333/fa-image"]);

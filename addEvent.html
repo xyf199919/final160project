@@ -1,6 +1,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="css/addevent.css"/>
+  <link rel="stylesheet" type="text/css" href="css/navbar.css"/>
   <link href="https://fonts.googleapis.com/css?family=Pacifico|Pangolin|Rancho&display=swap" rel="stylesheet">
 </head>
 
@@ -24,31 +25,22 @@
 <div class="mainbox">
   <div class="leftbox">
     <form action="/action_page.php">
-
-      <input type="text" placeholder="Title..." id = "title"/><br>
-
+      <input type="text" placeholder="Enter Title..." id = "title"/><br>
     </form>
-
     <form action="/action_page.php">
-
-      <input type="text" placeholder="Date..." id = "date"/><br>
-
+      <input type="text" placeholder="19990109" id = "date"/><br>
     </form>
-
     <form action="/action_page.php">
-
-      <textarea placeholder="Describe yourself here..." id = "description">
-      </textarea>
-
+      <input type="text" placeholder = "Enter your story here..." id = "description"/>
       <br>
 
     </form>
   </div>
 
   <div class="sidebox">
-    <input type="image" src= "video.png" />
-    <input type="image" src="camera.png" />
-    <input type="image" src="bubble.png" />
+    <input id = "video" type="image" src= "video.png" />
+    <input id = "camera" type="image" src="camera.png" />
+    <input id = "bubble" type="image" src="bubble.png" />
   </div>
 </div>
 
