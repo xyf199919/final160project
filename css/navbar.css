@@ -4,8 +4,8 @@
 
   background-repeat: round;
   border-bottom: 1px solid #000000;
-
-  background: url("navbarbackground.png");
+  background-color: #BAAC91
+  /* background: url("navbarbackground.png"); */
 }
 
 .navbar_logo {
